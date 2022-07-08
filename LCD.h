@@ -22,7 +22,7 @@ void DDRAMadrs(unsigned char);        // DDRAM address selection
 void SetLine(unsigned char);          // LCD line selection					  
 void curser_ONOFF(unsigned char );    // Cursor ON or OFF control
 void set_curser(unsigned char);       // Cursor position set
-void text_display(char *);            // Displays string of data on LCD
+void text_display(unsigned char *);            // Displays string of data on LCD
 void Bin2BCD(unsigned char);	      // Converts 8 bit Binary to 3 digit BCD
 void LCD_xy( unsigned int X, unsigned int Y); // location of text start
 void SendCommand(unsigned char temp);    // sends command to LCD

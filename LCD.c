@@ -155,7 +155,7 @@ void LCDwrite(unsigned char temp)
 * Overview:        This function takes address of string and displays on LCD
 *                  A single level pointer is used.
 ******************************************************************************/
-void text_display(char * text)
+void text_display(unsigned char * text)
 {
    while (*text)        // Continue to display characters from STRING
    {                    // until NULL character appears.

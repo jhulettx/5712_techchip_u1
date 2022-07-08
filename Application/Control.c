@@ -29,6 +29,7 @@
 //extern PINOutputs outputs;
 FLAGS flag;
 
+extern void display(uint8_t data);
 //******************************************************************************
 // Function Prototypes
 //***************************************************************************
@@ -92,7 +93,7 @@ void controlTasks(void)
 static void ChkInput_sw(void)
 {   
 //    test = 1;   // delete when done testing.
-    uint8_t data;
+    uint8_t xyz;
     
     if(flag._DeBouncing == false)
     {
@@ -155,27 +156,27 @@ static void ChkInput_sw(void)
                 flag._Nxt = OFF;
                 break;
             case 0x0D:  // W active
-                data = 0x0D; //
+                xyz = 0x0D; //
                 K1_SetHigh();
-                display(data);   //
+                display(xyz);   //
                 break;
             case 0x0E:  // G active 
-                data = 0x0E; //
-                display(data); //
+                xyz = 0x0E; //
+                display(xyz); //
                 break;
             case 0x0B:  // Select button pushed
-                data = 0x0B; //
-                display(data); //
+                xyz = 0x0B; //
+                display(xyz); //
                 break;
             case 0x05:  // W on, next pushed
-                data = 0x05;
+                xyz = 0x05;
                 break;
             case 0x07:  // Next button pushed
-                data = 0x07; //
-                display(data); //
+                xyz = 0x07; //
+                display(xyz); //
                 break;
             case 0x09:  // W on, select button pushed
-                data = 0x09;
+                xyz = 0x09;
                 break;
             default:
                 break;
