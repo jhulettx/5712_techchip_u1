@@ -26,11 +26,11 @@
 //#include <stdbool.h>
 //#include <stdio.h>
 
-void rd_state(void);
 void LCDinit(void);
-void text_display(char *);
+extern void text_display(unsigned char *);
 void LCD_xy( unsigned int X, unsigned int Y);
 void controlInitialize(void);
+//extern void ChkInput_sw(void);
 
 uint8_t state;
 
@@ -76,7 +76,8 @@ void main(void)
     while (1)
     {  
         __delay_ms(50); // delete after testing
-        switches(); // handle switch press
+//        ChkInput_sw();
+//        switches(); // handle switch press
 //        rd_state();
 //        if(1 == state)
 //        {
@@ -102,12 +103,3 @@ void main(void)
 /**
  End of File
 */
-
-void rd_state(void)
-{
-    if(W_GetValue())    // see if W is on
-        state = 0;      // W is off
-    
-    if(!W_GetValue())   // see if W is on
-        state = 1;      // W is on
-}

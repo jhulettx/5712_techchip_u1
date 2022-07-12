@@ -30,6 +30,8 @@
 FLAGS flag;
 
 extern void display(uint8_t data);
+void ChkInput_sw(void);
+
 //******************************************************************************
 // Function Prototypes
 //***************************************************************************
@@ -55,8 +57,8 @@ void controlInitialize(void)
 {   
     //Turn on a timer, to generate periodic interrupts.
     TIMER_SetConfiguration(TIMER_CONFIGURATION_1MS);
-//    GetInputStartValue();
-    ChkInput_sw();
+    GetInputStartValue();
+//    ChkInput_sw();
     
     flag._DeBouncing = false;
      
@@ -65,7 +67,8 @@ void controlInitialize(void)
     //(in this case at 1:1 rate, so debounceISR()
     //executes once per 1ms).
     TIMER_RequestTick(&debounceISR, 1);
-    TIMER_RequestTick(&ChkInput_sw, 1); 
+//    TIMER_RequestTick(&ChkInput_sw, 1); 
+    TIMER_RequestTick(&controlTasks, 1); 
 }
 
 /*********************************************************************
@@ -80,128 +83,8 @@ void controlInitialize(void)
 void controlTasks(void)
 { 
     //if(flag._InputChg)
-        //ChkInput_sw();
+        ChkInput_sw();
 }
-
-/*******************************************************************
- * Function: void ChkInput_sw(void)
- * Overview: check inputs for any changes
- * PreCondition: None
- * Input: None
- * Output: None 
- ********************************************************************/
-static void ChkInput_sw(void)
-{   
-//    test = 1;   // delete when done testing.
-    uint8_t xyz;
-    
-    if(flag._DeBouncing == false)
-    {
-        if(LcdNext_GetValue())
-        {
-            Reg = 1;
-            Reg = Reg << 1;
-//            flag._Nxt = OFF;    // next button is up
-        }
-        else
-        {
-            Reg = 0;
-            Reg = Reg << 1;
-//            flag._Nxt = ON; // next button is down
-        }
-
-        if(LcdSel_GetValue())
-        {
-//            Reg = Reg |= 1;
-//            Reg = Reg << 1;
-            flag._Sel = OFF;    // selection button is up
-        }
-        else
-        {
-//            Reg = Reg |= 0;
-//            Reg = Reg << 1;
-            flag._Sel = ON; // selection button is down
-        }
-
-        if(W_GetValue())
-        {
-//            Reg = Reg |= 1;
-//            Reg = Reg << 1;
-            flag._W = OFF;
-        }
-        else
-        {
-//            Reg = Reg |= 0;
-//            Reg = Reg << 1;
-            flag._W = ON;   // W is active
-        }
-
-        if(GIN_GetValue())
-        {
-//            Reg = Reg |= 1;
-            flag._G = OFF;
-        }
-        else
-        {
-//            Reg = Reg | 0;
-            flag._G = ON;   // G is active
-        }
- // TODO: add flag setting to the switch    
-        switch(Reg_Cur)
-        {
-            case 0x0F:  // nothing active
-                flag._G = OFF;
-                flag._W = OFF;
-                flag._Sel = OFF;
-                flag._Nxt = OFF;
-                break;
-            case 0x0D:  // W active
-                xyz = 0x0D; //
-                K1_SetHigh();
-                display(xyz);   //
-                break;
-            case 0x0E:  // G active 
-                xyz = 0x0E; //
-                display(xyz); //
-                break;
-            case 0x0B:  // Select button pushed
-                xyz = 0x0B; //
-                display(xyz); //
-                break;
-            case 0x05:  // W on, next pushed
-                xyz = 0x05;
-                break;
-            case 0x07:  // Next button pushed
-                xyz = 0x07; //
-                display(xyz); //
-                break;
-            case 0x09:  // W on, select button pushed
-                xyz = 0x09;
-                break;
-            default:
-                break;
-        }
-        
-        if(Reg_old != Reg) // is the new read same as the old read?
-        {                  // NO..
-            flag._DeBouncing = true;
-            DebounceTime = DB_TIMER;
-            Reg_old = Reg;  // move current reading to old reading
-            //Reg_Cur = Reg;  // copy new reading to Reg_Cur
-        }
-        else
-            return;
-    }
-    
-//    test = 2;   // delete when done testing.
-    if(DebounceTime)
-        return;
-    else
-    {
-        flag._DeBouncing = false;
-    }
-}
-
 
 /********************************************************************
  * Function: GetInputStartValue.c                                   *

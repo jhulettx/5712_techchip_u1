@@ -11,6 +11,7 @@
       <logicalFolder name="BSP" displayName="BSP" projectFiles="true">
         <itemPath>BSP/Timer_1ms.h</itemPath>
         <itemPath>Working.h</itemPath>
+        <itemPath>BSP/Inputs.h</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -37,6 +38,7 @@
       <logicalFolder name="BSP" displayName="BSP" projectFiles="true">
         <itemPath>BSP/Timer_1ms.c</itemPath>
         <itemPath>Working.c</itemPath>
+        <itemPath>BSP/Inputs.c</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"

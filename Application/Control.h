@@ -19,7 +19,7 @@
 //******************************************************************************
 #define SWITCH_DEBOUNCE_TIME_MS 10
 #define TIMER_SEC   1000      // 1 second timer
-#define DB_TIMER    20        // debounce timer 20ms
+//#define DB_TIMER    20        // debounce timer 20ms
 
 
 // RAM
@@ -32,12 +32,6 @@ uint8_t Reg_old;    // old reading of register
 
 //volatile int32_t control;	//control variable
 
-//struct
-//{
-//    bool _LED_ON;
-//    bool _LED_OFF;
-//    bool _SigSpeed;     // signal LED speed fast when set
-//}LEDflags;
 
 /*********************************************************************
 * Function: void controlInitialize(void)
@@ -63,17 +57,6 @@ void controlInitialize(void);
 void controlTasks(void);
 
 /*********************************************************************
-* Function: void updateThermistors(void)
-* Overview: Reads the value of the Thermistors to update the PID Control Loop.
-*
-* PreCondition: None
-*
-* Input:  None
-* Output: None
-********************************************************************/
-void updateThermistors(void);
-
-/*********************************************************************
 * Function: void adc_isr(void)
 * Overview: TMR5 interrupt service routine (10ms) refresh
 *
@@ -94,17 +77,6 @@ void adc_isr(void);
 ********************************************************************/
 void GetInputStartValue(void);
 
-///************************************************************************
-//* Function: void ChkInput_sw(void)
-//* 
-//* Overview: get values from switch inputs to see which ones changed state
-// *          turn on or off LED's accordingly.
-//* PreCondition: None
-//* Input:  None
-//* Output: None
-//*************************************************************************/
-static void ChkInput_sw(void);
-
 /************************************************************************
 * Function: void debounceISR(void)
 * 
@@ -114,17 +86,6 @@ static void ChkInput_sw(void);
 * Output: None
 *************************************************************************/
 void debounceISR(void);
-
-/************************************************************************
-* Function: void Sig_LEDSequence(void)
-* 
-* Overview: Flash the Sig LED slow or fast depending on the sw3 position
- *          switch off slow flash, switch on fast flash.
-* PreCondition: None
-* Input:  None
-* Output: None
-*************************************************************************/
-void Sig_LEDSequence(void);
 
 #ifdef	__cplusplus
 extern "C" {
