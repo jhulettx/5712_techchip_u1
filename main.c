@@ -73,9 +73,9 @@ void main(void)
     LCD_xy(2,2);            // line 2, 2nd slot
     text_display(arr2);
     
-    while (1)
+    while(1)
     {  
-        __delay_ms(50); // delete after testing
+        __delay_ms(10); // delete after testing
 //        ChkInput_sw();
 //        switches(); // handle switch press
 //        rd_state();

@@ -18,61 +18,61 @@ FLAGS flag;
  * Input: None
  * Output: None 
  ********************************************************************/
-//static void ChkInput_sw(void)
 void ChkInput_sw(void)
 {   
-//    test = 1;   // delete when done testing.
+    test = 1;   // delete when done testing.
     uint8_t xyz;
     
     if(flag._DeBouncing == false)
     {
-        if(LcdNext_GetValue())
+        test = 0;   // delete when done testing
+        if(LcdNext_GetValue() == 1)
         {
             Reg = 1;
             Reg = Reg << 1;
-//            flag._Nxt = OFF;    // next button is up
+            flag._Nxt = OFF;    // next button is up
         }
-        else
+        if(LcdNext_GetValue() == 0)
         {
             Reg = 0;
             Reg = Reg << 1;
-//            flag._Nxt = ON; // next button is down
+            flag._Nxt = ON; // next button is down
         }
-
-        if(LcdSel_GetValue())
+        
+        if(LcdSel_GetValue() == 1)
         {
-//            Reg = Reg |= 1;
-//            Reg = Reg << 1;
+            Reg = Reg |= 1;
+            Reg = Reg << 1;
             flag._Sel = OFF;    // selection button is up
         }
-        else
+        if(LcdSel_GetValue() == 0)
         {
-//            Reg = Reg |= 0;
-//            Reg = Reg << 1;
+            Reg = Reg |= 0;
+            Reg = Reg << 1;
             flag._Sel = ON; // selection button is down
         }
 
-        if(W_GetValue())
+        if(W_GetValue() == 1)
         {
-//            Reg = Reg |= 1;
-//            Reg = Reg << 1;
+            Reg = Reg |= 1;
+            Reg = Reg << 1;
             flag._W = OFF;
         }
-        else
+        if(W_GetValue() == 0)
         {
-//            Reg = Reg |= 0;
-//            Reg = Reg << 1;
+            Reg = Reg |= 0;
+            Reg = Reg << 1;
             flag._W = ON;   // W is active
         }
 
-        if(GIN_GetValue())
+        if(GIN_GetValue() == 1)
         {
-//            Reg = Reg |= 1;
+            Reg = Reg |= 1;
             flag._G = OFF;
         }
-        else
+        if(GIN_GetValue() == 0)
         {
-//            Reg = Reg | 0;
+            Reg = Reg | 0;
             flag._G = ON;   // G is active
         }
  // TODO: add flag setting to the switch    
