@@ -87,6 +87,9 @@ void GetInputStartValue(void);
 *************************************************************************/
 void debounceISR(void);
 
+//
+void RdBtn(void);
+
 #ifdef	__cplusplus
 extern "C" {
 #endif /* __cplusplus */

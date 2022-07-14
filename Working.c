@@ -65,6 +65,11 @@ void switches(void)
         flag._RegDiff = false;   // turn off flag
 }
 
+void Buttons(void)
+{
+    //TODO finish this function
+}
+
 /************************************************************************
  *              display                                                 *
  ************************************************************************/
