@@ -113,40 +113,28 @@ void GetInputStartValue(void)
 //    test = 0; // delete when done testing
     if(LcdNext_GetValue())
     {
-//        Reg = 1;
-//        Reg = Reg << 1;
         flag._Nxt = OFF;    // next button is up
     }
     else
     {
-//        Reg = 0;
-//        Reg = Reg << 1;
         flag._Nxt = ON; // next button is down
     }
     
     if(LcdSel_GetValue())
     {
-//        Reg = Reg |= 1;
-//        Reg = Reg << 1;
         flag._Sel = OFF;    // selection button is up
     }
     else
     {
-//        Reg = Reg |= 0;
-//        Reg = Reg << 1;
         flag._Sel = ON; // selection button is down
     }
     
     if(W_GetValue())
     {
-//        Reg = Reg |= 1;
-//        Reg = Reg << 1;
         flag._W = OFF;
     }
     else
     {
-//        Reg = Reg |= 0;
-//        Reg = Reg << 1;
         flag._W = ON;   // W is active
     }
     

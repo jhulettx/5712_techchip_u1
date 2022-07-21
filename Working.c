@@ -68,6 +68,41 @@ void switches(void)
 void Buttons(void)
 {
     //TODO finish this function
+    if(flag._W)
+    {
+        // turn something on
+    }
+    if(0 == flag._W)
+    {
+        // turn something off
+    }
+    
+    if(flag._G)
+    {
+        // 
+    }
+    if(0 == flag._G)
+    {
+        //
+    }
+    
+    if(flag._Nxt)
+    {
+        //
+    }
+    if(0 == flag._Nxt)
+    {
+        //
+    }
+    
+    if(flag._Sel)
+    {
+        //
+    }
+    if(0 == flag._Sel)
+    {
+        //
+    }
 }
 
 /************************************************************************
