@@ -140,15 +140,12 @@ void GetInputStartValue(void)
     
     if(GIN_GetValue())
     {
-//        Reg = Reg |= 1;
         flag._G = OFF;
     }
     else
     {
-//        Reg = Reg |= 0;
         flag._G = ON;   // G is active
     }
-//    Reg_old = Reg;  // move Reg to Reg old
 }
 
 /*********************************************************************
