@@ -32,6 +32,8 @@ uint8_t Reg_old;    // old reading of register
 
 //volatile int32_t control;	//control variable
 
+//******** externals ***************
+extern void Buttons(void);
 
 /*********************************************************************
 * Function: void controlInitialize(void)

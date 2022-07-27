@@ -16,7 +16,7 @@ extern "C" {
 #include "LCD.h"
 #include "mcc_generated_files/pin_manager.h"
     
-// RAM
+// ****************** RAM *******************************
     uint8_t Reg_old;
     
 /***************************************************************************
@@ -41,6 +41,16 @@ void switches(void);
 ****************************************************************************/
 void display(uint8_t data);
 
+/***************************************************************************
+* Function: void Buttons(data)
+* Overview:  
+*
+* PreCondition: None
+*
+* Input:  None
+* Output: None
+****************************************************************************/
+void Buttons(void);
 
 #ifdef	__cplusplus
 }
