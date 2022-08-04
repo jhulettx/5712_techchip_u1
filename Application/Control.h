@@ -21,8 +21,7 @@
 #define TIMER_SEC   1000      // 1 second timer
 //#define DB_TIMER    20        // debounce timer 20ms
 
-
-// RAM
+//****************** RAM ***************************************
 uint8_t DebounceTime;
 //uint8_t test;       // DELETE after testing
 uint8_t SW_inputs;  // switch inputs
@@ -32,7 +31,7 @@ uint8_t Reg_old;    // old reading of register
 
 //volatile int32_t control;	//control variable
 
-//******** externals ***************
+//************** externals ***************************
 extern void Buttons(void);
 
 /*********************************************************************

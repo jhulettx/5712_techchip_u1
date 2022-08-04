@@ -75,7 +75,7 @@ void ChkInput_sw(void)
             Reg = Reg | 0;
             flag._G = ON;   // G is active
         }
- // TODO: add flag setting to the switch    
+ // TODO:     
         switch(Reg_Cur)
         {
             case 0x0F:  // nothing active

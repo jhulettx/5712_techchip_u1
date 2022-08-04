@@ -93,11 +93,6 @@ void main(void)
 //            __delay_ms(10);
 //            K1_SetLow();
 //        }
-//        __delay_ms(200);
-//        if(!EP_GetValue())
-//            K2_SetHigh();
-//        else
-//            K2_SetLow();
     }
 }
 /**
