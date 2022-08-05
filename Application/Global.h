@@ -58,6 +58,7 @@ extern "C" {
 // RAM
 uint8_t test;   // testing delete when done.
 uint8_t Reg_Cur;    // current register value
+uint8_t state;      // holds current state.
 
 unsigned char arr1[] = "   5712 TEST";
 unsigned char arr2[] = "Next to start";

@@ -75,14 +75,11 @@ void ChkInput_sw(void)
             Reg = Reg | 0;
             flag._G = ON;   // G is active
         }
- // TODO:     
+ // TODO: set up states for the switch 
         switch(Reg_Cur)
         {
             case 0x0F:  // nothing active
-                flag._G = OFF;
-                flag._W = OFF;
-                flag._Sel = OFF;
-                flag._Nxt = OFF;
+                // state = 0
                 break;
             case 0x0D:  // W active
                 
@@ -97,10 +94,10 @@ void ChkInput_sw(void)
                 
                 break;
             case 0x07:  // Next button pushed
-                
+                // state = 2
                 break;
             case 0x09:  // W on, select button pushed
-                
+                // state = 3
                 break;
             default:
                 break;
@@ -111,10 +108,13 @@ void ChkInput_sw(void)
             flag._DeBouncing = true;
             DebounceTime = DB_TIMER;
             Reg_old = Reg;  // move current reading to old reading
-            //Reg_Cur = Reg;  // copy new reading to Reg_Cur
+//            Reg_Cur = Reg;  // copy new reading to Reg_Cur
         }
         else
+        {
+            Reg_Cur = Reg;  // copy new reading to Reg_Cur
             return;
+        }
     }
     test = 2;   // delete when done testing.
     if(DebounceTime)
