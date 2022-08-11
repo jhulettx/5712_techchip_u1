@@ -79,25 +79,25 @@ void ChkInput_sw(void)
         switch(Reg_Cur)
         {
             case 0x0F:  // nothing active
-                // state = 0
+                 state = 0;
                 break;
             case 0x0D:  // W active
-                
+                state = 1;
                 break;
             case 0x0E:  // G active 
-                
+                state = 2;
                 break;
             case 0x0B:  // Select button pushed
-                
+                state = 3;
                 break;
             case 0x05:  // W on, next pushed
-                
+                state = 4;
                 break;
             case 0x07:  // Next button pushed
-                // state = 2
+                state = 5;
                 break;
             case 0x09:  // W on, select button pushed
-                // state = 3
+                state = 6;
                 break;
             default:
                 break;

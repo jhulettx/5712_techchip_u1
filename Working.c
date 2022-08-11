@@ -16,53 +16,21 @@ FLAGS flag;
 uint8_t Reg_old;
 
 /****************************************************************************
- *                         SWITCHES                                         *
+ *                         STATES                                           *
  ****************************************************************************/
-void switches(void)
+void states(void)
 {
     test = 4;
-    uint8_t data;
-    
-    if(Reg_Cur != Reg_old)  
-    {                       // does reg cur = reg old?
-        Reg_Cur = Reg_old;  // no.. make them the same
-        flag._RegDiff = true; // turn on difference flag
+        // TODO: finish this section 8-11-22
+    if(state == 0)
+    {
         
-        switch(Reg_Cur)
-        {
-            case 0x0F:  // nothing active
-                data = 0x0F; //
-                display(data);
-                break;
-            case 0x0D:  // W active
-                data = 0x0D; //
-                K1_SetHigh();
-                display(data);   //
-                break;
-            case 0x0E:  // G active 
-                data = 0x0E; //
-                display(data); //
-                break;
-            case 0x0B:  // Select button pushed
-                data = 0x0B; //
-                display(data); //
-                break;
-            case 0x05:  // W on, next pushed
-                data = 0x05;
-                break;
-            case 0x07:  // Next button pushed
-                data = 0x07; //
-                display(data); //
-                break;
-            case 0x09:  // W on, select button pushed
-                data = 0x09;
-                break;
-            default:
-                break;
-        }
     }
-    if(flag._RegDiff)
-        flag._RegDiff = false;   // turn off flag
+    
+    if(state == 1)
+    {
+        
+    }
 }
 
 void Buttons(void)

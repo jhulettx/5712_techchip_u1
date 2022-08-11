@@ -20,15 +20,16 @@ extern "C" {
     uint8_t Reg_old;
     
 /***************************************************************************
-* Function: void switches(void)
-* Overview: take Reg_Cur and compare to 4 choices, then execute that code. 
+* Function: void states(void)
+* Overview: take the state from Inputs.c and find the corresponding state,
+ *          and execute code. 
 *
 * PreCondition: None
 *
-* Input:  Reg_Cur
+* Input:  state
 * Output: None
 ****************************************************************************/
-void switches(void);
+void states(void);
 
 /***************************************************************************
 * Function: void display(data)

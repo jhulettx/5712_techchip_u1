@@ -76,6 +76,8 @@ unsigned char arr9[] = "next down  ";
 unsigned char arr10[] = "    Normal   ";
 unsigned char arr11[] = " W active   ";
 unsigned char arr12[] = " G active   ";
+unsigned char arr13[] = "Fan Speed Test";
+unsigned char arr14[] = "Select to Start";
 
 #ifdef	__cplusplus
 }
