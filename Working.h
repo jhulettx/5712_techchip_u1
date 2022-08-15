@@ -32,15 +32,15 @@ extern "C" {
 void states(void);
 
 /***************************************************************************
-* Function: void display(data)
-* Overview: take data and display it on line 2 of the LCD display. 
+* Function: void FanSpeed(void)
+* Overview: set up the fan speed control for low, med, hi 
 *
 * PreCondition: None
 *
-* Input:  data
+* Input:  None
 * Output: None
 ****************************************************************************/
-void display(uint8_t data);
+void FanSpeed(void);
 
 /***************************************************************************
 * Function: void Buttons(data)

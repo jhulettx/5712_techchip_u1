@@ -63,6 +63,7 @@ void main(void)
 //    INTERRUPT_PeripheralInterruptDisable();
     
     TMR1_SetInterruptHandler(TMR1_CallBack);
+    TMR3_SetInterruptHandler(Time_Count);   // TODO: build timer 3 timer file
     // wait for W to turn on, if W is turned on, k1 and k4 turn on,
 	// when jumper j23 is shorted, k2 turns on.
     
@@ -79,22 +80,8 @@ void main(void)
 //        ChkInput_sw();
 //        switches(); // handle switch press
 //        rd_state();
-//        if(1 == state)
-//        {
-//            K4_SetHigh();
-//            __delay_ms(10);
-//            K1_SetHigh();
-//            LED_SetHigh();
-//        }
-//        else if(0 == state)
-//        {
-//            LED_SetLow();
-//            K4_SetLow();
-//            __delay_ms(10);
-//            K1_SetLow();
-//        }
-    }
-}
+    }   // end of while(1)
+}   // end of main
 /**
  End of File
 */

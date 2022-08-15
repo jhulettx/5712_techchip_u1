@@ -35,28 +35,38 @@ void states(void)
 
 void Buttons(void)
 {
-    //TODO finish this function
+    test = 5;
+    //TODO finish this function 8-11-22
     if(flag._W)
     {
-        // turn something on
+        // do something
     }
     if(0 == flag._W)
     {
         // turn something off
     }
     
-    if(flag._G)
-    {
-        // 
-    }
-    if(0 == flag._G)
-    {
-        //
-    }
+//    if(flag._G)
+//    {
+//        // 
+//    }
+//    if(0 == flag._G)
+//    {
+//        //
+//    }
     
     if(flag._Nxt)
     {
-        //
+        LCD_xy(1,1);            // line 1, 1st slot
+        text_display(arr13);
+        LCD_xy(2,1);            // line 2, 1st slot
+        text_display(arr14);
+//  TODO: start timer here, wait to see if select button is pushed or next button 
+//        is pushed, if no button is pushed and the timer runs out, go back to the start. 8-15-22
+        if(flag._Sel)
+        {
+            FanSpeed();
+        }
     }
     if(0 == flag._Nxt)
     {
@@ -74,33 +84,10 @@ void Buttons(void)
 }
 
 /************************************************************************
- *              display                                                 *
+ *                      FAN SPEED TEST                                  *
  ************************************************************************/
-void display(uint8_t data)
+void FanSpeed(void)
 {
-    if(data == 0x0F)
-    {
-        LCD_xy(2,2);            // line 2, 2nd slot
-        text_display(arr10);    // normal
-    }
-    if(data == 0x0D)
-    {
-        LCD_xy(2,2);            // line 2, 2nd slot
-        text_display(arr11);    // W active
-    }
-    if(data == 0x0E)
-    {
-        LCD_xy(2,2);            // line 2, 2nd slot
-        text_display(arr12);    // G active
-    }
-    if(data == 0x0B)
-    {
-        LCD_xy(2,2);            // line 2, 2nd slot
-        text_display(arr8);     // select button pushed
-    }
-    if(data == 0x07)
-    {
-        LCD_xy(2,2);            // line 2, 2nd slot
-        text_display(arr9);     // next button pushed
-    }
+    
+    
 }

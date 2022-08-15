@@ -95,6 +95,7 @@ void ChkInput_sw(void)
                 break;
             case 0x07:  // Next button pushed
                 state = 5;
+                flag._W = SET;
                 break;
             case 0x09:  // W on, select button pushed
                 state = 6;

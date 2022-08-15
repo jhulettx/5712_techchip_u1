@@ -13,6 +13,8 @@
 #include <xc.h> // include processor files - each processor file is guarded. 
 #include "Global.h"
 
+extern void states(void);
+
 
 //******************************************************************************
 // Application related definitions

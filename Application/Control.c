@@ -68,7 +68,8 @@ void controlInitialize(void)
     //executes once per 1ms).
     TIMER_RequestTick(&debounceISR, 1);
     TIMER_RequestTick(&RdBtn, 1); 
-    TIMER_RequestTick(&controlTasks, 1); 
+    TIMER_RequestTick(&controlTasks, 1);    
+    TIMER_RequestTick(&states, 1);          // check states (Working.c)
 }
 
 /*********************************************************************

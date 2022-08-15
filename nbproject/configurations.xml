@@ -12,6 +12,7 @@
         <itemPath>BSP/Timer_1ms.h</itemPath>
         <itemPath>Working.h</itemPath>
         <itemPath>BSP/Inputs.h</itemPath>
+        <itemPath>BSP/ClkTimer.h</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -22,6 +23,7 @@
         <itemPath>mcc_generated_files/adc.h</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
         <itemPath>mcc_generated_files/tmr1.h</itemPath>
+        <itemPath>mcc_generated_files/tmr3.h</itemPath>
       </logicalFolder>
       <itemPath>LCD.h</itemPath>
     </logicalFolder>
@@ -39,6 +41,7 @@
         <itemPath>BSP/Timer_1ms.c</itemPath>
         <itemPath>Working.c</itemPath>
         <itemPath>BSP/Inputs.c</itemPath>
+        <itemPath>BSP/ClkTimer.c</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -49,6 +52,7 @@
         <itemPath>mcc_generated_files/adc.c</itemPath>
         <itemPath>mcc_generated_files/tmr1.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
+        <itemPath>mcc_generated_files/tmr3.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>LCD.c</itemPath>

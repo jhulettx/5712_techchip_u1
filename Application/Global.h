@@ -28,7 +28,13 @@ extern "C" {
         OFF,
         ON
     }
-    set;
+    onn;
+    
+    typedef enum
+    {
+        CLEAR,
+        SET
+    } set;
     
     // RELAYS
     typedef struct
@@ -77,7 +83,7 @@ unsigned char arr10[] = "    Normal   ";
 unsigned char arr11[] = " W active   ";
 unsigned char arr12[] = " G active   ";
 unsigned char arr13[] = "Fan Speed Test";
-unsigned char arr14[] = "Select to Start";
+unsigned char arr14[] = "Turn on G Start";
 
 #ifdef	__cplusplus
 }
