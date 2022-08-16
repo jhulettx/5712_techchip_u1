@@ -63,6 +63,9 @@ void Buttons(void)
         text_display(arr14);
 //  TODO: start timer here, wait to see if select button is pushed or next button 
 //        is pushed, if no button is pushed and the timer runs out, go back to the start. 8-15-22
+        if(0 == TimeOut)
+            TimeOut = Time10s;  // load timer for 10 seconds
+        
         if(flag._Sel)
         {
             FanSpeed();

@@ -65,6 +65,7 @@ extern "C" {
 uint8_t test;   // testing delete when done.
 uint8_t Reg_Cur;    // current register value
 uint8_t state;      // holds current state.
+uint8_t TimeOut;    // holds seconds in seconds uses timer 3
 
 unsigned char arr1[] = "   5712 TEST";
 unsigned char arr2[] = "Next to start";

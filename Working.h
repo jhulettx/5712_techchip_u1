@@ -16,6 +16,8 @@ extern "C" {
 #include "LCD.h"
 #include "mcc_generated_files/pin_manager.h"
     
+#define Time10s 10
+    
 // ****************** RAM *******************************
     uint8_t Reg_old;
     

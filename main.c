@@ -35,6 +35,7 @@ void controlInitialize(void);
 uint8_t state;
 
 extern void switches(void);
+extern void Time_Count(void);
 
 /*
                          Main application

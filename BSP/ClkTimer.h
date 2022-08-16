@@ -13,6 +13,7 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 #include <stdbool.h>
+#include "../Application/Global.h"
 //#include "mcc_generated_files/pin_manager.h"
 
 //***************** definitions ********************
