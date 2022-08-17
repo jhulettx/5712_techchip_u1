@@ -22,12 +22,17 @@ void states(void)
 {
     test = 4;
         // TODO: finish this section 8-11-22
-    if(state == 0)
+    if(state == 0)  // starting state
     {
         
     }
     
     if(state == 1)
+    {
+        
+    }
+    
+    if(state == 5)  // speed test
     {
         
     }
