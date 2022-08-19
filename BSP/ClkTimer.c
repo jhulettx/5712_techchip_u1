@@ -23,8 +23,6 @@ void Time_Count(void)
         
         if(TimeOut)
             --TimeOut;
-//        if(TimerMain)
-//            --TimerMain;        
     }
 
 	if(seconds == 60)

@@ -16,7 +16,7 @@ extern "C" {
 #include "LCD.h"
 #include "mcc_generated_files/pin_manager.h"
     
-#define Time10s 10
+#define Time10s 10  // used for time out in state section
     
 // ****************** RAM *******************************
     uint8_t Reg_old;

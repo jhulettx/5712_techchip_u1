@@ -59,6 +59,7 @@ extern "C" {
     bool _G;            // 1 = no G call, 0 = G active
     bool _Sel;          // 1 = select button is up, 0 = button is pressed
     bool _Nxt;          // 1 = next button is up, 0 = button is pressed
+    bool _Busy;         // 1 = a test is in process, 0 = not running any test
 } FLAGS;
 
 // RAM

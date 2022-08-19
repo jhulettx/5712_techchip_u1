@@ -57,7 +57,7 @@ void controlInitialize(void)
 {   
     //Turn on a timer, to generate periodic interrupts.
     TIMER_SetConfiguration(TIMER_CONFIGURATION_1MS);
-    GetInputStartValue();
+//    GetInputStartValue();
 //    ChkInput_sw();
     
     flag._DeBouncing = false;
@@ -108,46 +108,46 @@ void RdBtn(void)
  * Overview: On start up this function is called to set initial     *
  *           states of inputs.                                      *
  ********************************************************************/
-void GetInputStartValue(void)
-{
-    Reg = 0;    // make sure register is clear
-//    test = 0; // delete when done testing
-    if(LcdNext_GetValue())
-    {
-        flag._Nxt = OFF;    // next button is up
-    }
-    else
-    {
-        flag._Nxt = ON; // next button is down
-    }
-    
-    if(LcdSel_GetValue())
-    {
-        flag._Sel = OFF;    // selection button is up
-    }
-    else
-    {
-        flag._Sel = ON; // selection button is down
-    }
-    
-    if(W_GetValue())
-    {
-        flag._W = OFF;
-    }
-    else
-    {
-        flag._W = ON;   // W is active
-    }
-    
-    if(GIN_GetValue())
-    {
-        flag._G = OFF;
-    }
-    else
-    {
-        flag._G = ON;   // G is active
-    }
-}
+//void GetInputStartValue(void)
+//{
+//    Reg = 0;    // make sure register is clear
+////    test = 0; // delete when done testing
+//    if(LcdNext_GetValue())
+//    {
+//        flag._Nxt = OFF;    // next button is up
+//    }
+//    else
+//    {
+//        flag._Nxt = ON; // next button is down
+//    }
+//    
+//    if(LcdSel_GetValue())
+//    {
+//        flag._Sel = OFF;    // selection button is up
+//    }
+//    else
+//    {
+//        flag._Sel = ON; // selection button is down
+//    }
+//    
+//    if(W_GetValue())
+//    {
+//        flag._W = OFF;
+//    }
+//    else
+//    {
+//        flag._W = ON;   // W is active
+//    }
+//    
+//    if(GIN_GetValue())
+//    {
+//        flag._G = OFF;
+//    }
+//    else
+//    {
+//        flag._G = ON;   // G is active
+//    }
+//}
 
 /*********************************************************************
 * Function: static void adc_isr(void)

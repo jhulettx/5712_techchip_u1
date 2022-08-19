@@ -78,7 +78,7 @@ void adc_isr(void);
 * Input:  None
 * Output: None
 ********************************************************************/
-void GetInputStartValue(void);
+//void GetInputStartValue(void);
 
 /************************************************************************
 * Function: void debounceISR(void)

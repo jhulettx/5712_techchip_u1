@@ -32,9 +32,58 @@ void states(void)
         
     }
     
-    if(state == 5)  // speed test
+    if(state == 2)
     {
         
+    }
+    
+    if(state == 3)
+    {
+        
+    }
+    
+    if(state == 4)  // speed test
+    {
+        test = 8;   // delete after testing
+        if(flag._Busy == CLEAR) // is a test running?
+        {                       // no..
+            LCD_xy(1,1);            // line 1, 1st slot
+            text_display(arr13);    // Fan Speed Test
+            LCD_xy(2,1);            // line 2, 1st slot
+            text_display(arr14);    // Turn on G Start
+
+            if(flag._Nxt == SET)    // wait until next button is 
+                return;
+            else if(flag._Nxt == CLEAR)
+            {
+                TimeOut = Time10s;      // load timer for 10 seconds
+                flag._Busy = SET;       // tell system we are running a test
+            }
+        }
+        
+        if(flag._Sel == SET)
+            return;
+        else if(flag._Sel == CLEAR)
+        {
+            TimeOut = 0;
+            FanSpeed();
+        }
+        
+        if(flag._Nxt == SET)
+            return;
+        else if(flag._Nxt == CLEAR)
+        {
+            TimeOut = 0;
+            state = 0;
+        }
+        
+        if(TimeOut)
+            return;
+        else if(0 == TimeOut)
+        {
+            state = 0;
+            flag._Busy = CLEAR;
+        }
     }
 }
 
@@ -51,30 +100,21 @@ void Buttons(void)
         // turn something off
     }
     
-//    if(flag._G)
-//    {
-//        // 
-//    }
-//    if(0 == flag._G)
-//    {
-//        //
-//    }
-    
     if(flag._Nxt)
     {
-        LCD_xy(1,1);            // line 1, 1st slot
-        text_display(arr13);
-        LCD_xy(2,1);            // line 2, 1st slot
-        text_display(arr14);
+//        LCD_xy(1,1);            // line 1, 1st slot
+//        text_display(arr13);    // Fan Speed Test
+//        LCD_xy(2,1);            // line 2, 1st slot
+//        text_display(arr14);    // Turn on G Start
 //  TODO: start timer here, wait to see if select button is pushed or next button 
 //        is pushed, if no button is pushed and the timer runs out, go back to the start. 8-15-22
-        if(0 == TimeOut)
-            TimeOut = Time10s;  // load timer for 10 seconds
+//        if(0 == TimeOut)
+//            TimeOut = Time10s;  // load timer for 10 seconds
         
-        if(flag._Sel)
-        {
-            FanSpeed();
-        }
+//        if(flag._Sel)
+//        {
+//            FanSpeed();
+//        }
     }
     if(0 == flag._Nxt)
     {
