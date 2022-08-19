@@ -22,9 +22,15 @@ void states(void)
 {
     test = 4;
         // TODO: finish this section 8-11-22
+    if(state == CurState)
+    {
     if(state == 0)  // starting state
     {
-        
+        SendCommand(DispClr);    // clear display
+        LCD_xy(1,2);            // line 1, 1st slot
+        text_display(arr1);     // 5712 TEST
+        LCD_xy(2,2);            // line 2, 2nd slot
+        text_display(arr2);     // Next to start
     }
     
     if(state == 1)
@@ -47,46 +53,47 @@ void states(void)
         test = 8;   // delete after testing
         if(flag._Busy == CLEAR) // is a test running?
         {                       // no..
+            SendCommand(DispClr);   // clear display
             LCD_xy(1,1);            // line 1, 1st slot
             text_display(arr13);    // Fan Speed Test
             LCD_xy(2,1);            // line 2, 1st slot
             text_display(arr14);    // Turn on G Start
 
             if(flag._Nxt == SET)    // wait until next button is 
-                return;
-            else if(flag._Nxt == CLEAR)
             {
                 TimeOut = Time10s;      // load timer for 10 seconds
                 flag._Busy = SET;       // tell system we are running a test
             }
         }
+     
+//        if(flag._Sel == CLEAR)
+//            return;
+//        if(flag._Sel == SET)
+//        {
+//            TimeOut = 0;
+//            FanSpeed();
+//        }
         
-        if(flag._Sel == SET)
-            return;
-        else if(flag._Sel == CLEAR)
+        if(flag._Nxt == CLEAR)
         {
-            TimeOut = 0;
-            FanSpeed();
-        }
+            if(flag._Nxt == SET)
+            {
+                TimeOut = 0;
+                state = 0;
+            }
+        }           
         
-        if(flag._Nxt == SET)
-            return;
-        else if(flag._Nxt == CLEAR)
-        {
-            TimeOut = 0;
-            state = 0;
-        }
-        
-        if(TimeOut)
-            return;
-        else if(0 == TimeOut)
+        if(TimeOut) // did the time run out?
+            return; // no.. 
+        else if(0 == TimeOut)  // yes.. 
         {
             state = 0;
             flag._Busy = CLEAR;
         }
+    } // end of state 4
     }
-}
-
+} // end of states
+    
 void Buttons(void)
 {
     test = 5;

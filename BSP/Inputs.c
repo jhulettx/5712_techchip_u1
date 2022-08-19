@@ -76,27 +76,27 @@ void ChkInput_sw(void)
             flag._G = ON;   // G is active
         }
  // TODO: set up states for the switch 
-        switch(Reg_Cur)
-        {
-            case 0x0F:  // nothing active
-                 state = 0;
-                break;
-            case 0x0D:  // W active
-                state = 1;
-                break;
-            case 0x0E:  // G active 
-                state = 2;
-                break;
-            case 0x0B:  // Select button pushed
-                state = 3;
-                break;
-            case 0x07:  // Next button pushed
-                state = 4;
-//                flag._W = SET;
-                break;
-            default:
-                break;
-        }
+//        switch(Reg_Cur)
+//        {
+//            case 0x0F:  // nothing active
+//                state = 0;
+//                break;
+//            case 0x0D:  // W active
+//                state = 1;
+//                break;
+//            case 0x0E:  // G active 
+//                state = 2;
+//                break;
+//            case 0x0B:  // Select button pushed
+//                state = 3;
+//                break;
+//            case 0x07:  // Next button pushed
+//                state = 4;
+////                flag._W = SET;
+//                break;
+//            default:
+//                break;
+//        }
         
         if(Reg_old != Reg) // is the new read same as the old read?
         {                  // NO..

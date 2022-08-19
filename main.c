@@ -70,10 +70,10 @@ void main(void)
     
     state = 0;
 
-    LCD_xy(1,2);            // line 1, 1st slot
-    text_display(arr1);
-    LCD_xy(2,2);            // line 2, 2nd slot
-    text_display(arr2);
+//    LCD_xy(1,2);            // line 1, 1st slot
+//    text_display(arr1);
+//    LCD_xy(2,2);            // line 2, 2nd slot
+//    text_display(arr2);
     
     while(1)
     {  

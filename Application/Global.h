@@ -49,23 +49,24 @@ extern "C" {
         bool _k5;
     }Relay;
     
-// FLAGES
+    // FLAGES
     typedef struct
-{
-    bool _InputChg;     // one of the inputs has changed state
-    bool _DeBouncing;   // 1 = debounce in progress
-    bool _RegDiff;      // 1 = register reading did not match the old reading
-    bool _W;            // 1 = no W call, 0 = W active
-    bool _G;            // 1 = no G call, 0 = G active
-    bool _Sel;          // 1 = select button is up, 0 = button is pressed
-    bool _Nxt;          // 1 = next button is up, 0 = button is pressed
-    bool _Busy;         // 1 = a test is in process, 0 = not running any test
-} FLAGS;
+    {
+        bool _BtnBusy;      // 1 = the button is pressed and held down, 0 = button is up
+        bool _DeBouncing;   // 1 = debounce in progress
+        bool _RegDiff;      // 1 = register reading did not match the old reading
+        bool _W;            // 1 = no W call, 0 = W active
+        bool _G;            // 1 = no G call, 0 = G active
+        bool _Sel;          // 1 = select button is up, 0 = button is pressed
+        bool _Nxt;          // 1 = next button is up, 0 = button is pressed
+        bool _Busy;         // 1 = a test is in process, 0 = not running any test
+    } FLAGS;
 
 // RAM
 uint8_t test;   // testing delete when done.
 uint8_t Reg_Cur;    // current register value
 uint8_t state;      // holds current state.
+uint8_t CurState;   // holds the new state value
 uint8_t TimeOut;    // holds seconds in seconds uses timer 3
 
 unsigned char arr1[] = "   5712 TEST";
