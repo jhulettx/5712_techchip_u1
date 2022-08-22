@@ -12,8 +12,9 @@
 //#include <stdint.h>
 
 FLAGS flag;
+stateflags stateflag;
 
-uint8_t Reg_old;
+uint8_t counter;
 
 /****************************************************************************
  *                         STATES                                           *
@@ -22,15 +23,24 @@ void states(void)
 {
     test = 4;
         // TODO: finish this section 8-11-22
-    if(state == CurState)
-    {
+//    if(state == CurState)
+//    {
     if(state == 0)  // starting state
     {
-        SendCommand(DispClr);    // clear display
-        LCD_xy(1,2);            // line 1, 1st slot
-        text_display(arr1);     // 5712 TEST
-        LCD_xy(2,2);            // line 2, 2nd slot
-        text_display(arr2);     // Next to start
+        if(stateflag._state0 == SET)
+        {
+            SendCommand(DispClr);    // clear display
+            LCD_xy(1,2);            // line 1, 1st slot
+            text_display(arr1);     // 5712 TEST
+            LCD_xy(2,2);            // line 2, 2nd slot
+            text_display(arr2);     // Next to start
+            stateflag._state0 = CLEAR;
+        }
+        if(flag._Nxt == SET)
+        {
+            state = 4;
+            stateflag._state4 = SET;
+        }
     }
     
     if(state == 1)
@@ -51,47 +61,61 @@ void states(void)
     if(state == 4)  // speed test
     {
         test = 8;   // delete after testing
-        if(flag._Busy == CLEAR) // is a test running?
-        {                       // no..
+        
+        if(stateflag._state4 == SET)
+        {        
+            // TODO: this does not display properly on line-1 8-22-22
             SendCommand(DispClr);   // clear display
             LCD_xy(1,1);            // line 1, 1st slot
             text_display(arr13);    // Fan Speed Test
             LCD_xy(2,1);            // line 2, 1st slot
             text_display(arr14);    // Turn on G Start
-
-            if(flag._Nxt == SET)    // wait until next button is 
-            {
-                TimeOut = Time10s;      // load timer for 10 seconds
-                flag._Busy = SET;       // tell system we are running a test
-            }
+            test = 0;   // delete after testing
+            SwCounter = SwTime;     // load timer for 3 seconds
+            TimeOut = Time10s;      // load timer for 10 seconds
+            nextCnt++;
+            stateflag._state4 = CLEAR;
         }
-     
-//        if(flag._Sel == CLEAR)
-//            return;
-//        if(flag._Sel == SET)
+         
+        while((SwCounter) && (flag._Nxt == SET)){}; // TODO: rework this line 8-22-22
 //        {
-//            TimeOut = 0;
-//            FanSpeed();
-//        }
+//          if(flag._Sel == SET)
+//          {
+//              TimeOut = 0;
+//              FanSpeed();
+//          }
+            test = 1;
         
-        if(flag._Nxt == CLEAR)
-        {
             if(flag._Nxt == SET)
             {
                 TimeOut = 0;
-                state = 0;
+                SwCounter = SwTime;     // load timer for 3 seconds
+//                state = 0; 
+//                stateflag._state0 = SET;
             }
-        }           
-        
-        if(TimeOut) // did the time run out?
-            return; // no.. 
-        else if(0 == TimeOut)  // yes.. 
-        {
-            state = 0;
-            flag._Busy = CLEAR;
-        }
+            
+            if((0 == SwCounter) || (flag._Nxt == CLEAR))
+            {
+                if(0 == TimeOut)  // yes.. 
+                {
+                    state = 0;
+                    stateflag._state0 = SET;
+                }
+            }
+//        }
+//        if(TimeOut) // did the time run out?
+//            wast(); // no.. 
+//        else if(0 == TimeOut)  // yes..
+//        if((0 == SwCounter) || (flag._Nxt == CLEAR))
+//        {
+//            if(0 == TimeOut)  // yes.. 
+//            {
+//                state = 0;
+//                stateflag._state0 = SET;
+//            }
+//        }
     } // end of state 4
-    }
+//    }
 } // end of states
     
 void Buttons(void)
@@ -145,4 +169,12 @@ void FanSpeed(void)
 {
     
     
+}
+
+/********************************
+ *      Dummy function          *
+ ********************************/
+void wast(void)
+{
+    test = 100; // delete after testing
 }

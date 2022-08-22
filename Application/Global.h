@@ -62,12 +62,22 @@ extern "C" {
         bool _Busy;         // 1 = a test is in process, 0 = not running any test
     } FLAGS;
 
+    typedef struct
+    {
+        bool _state0;       // 1 = state 0 LCD is being printed 0 = stop writing to LCD
+        bool _state1;       // 1 = state 1 LCD is being printed 0 = stop writing to LCD
+        bool _state2;       // 1 = state 2 LCD is being printed 0 = stop writing to LCD
+        bool _state3;       // 1 = state 3 LCD is being printed 0 = stop writing to LCD
+        bool _state4;       // 1 = state 4 LCD is being printed 0 = stop writing to LCD
+    } stateflags;
+    
 // RAM
 uint8_t test;   // testing delete when done.
 uint8_t Reg_Cur;    // current register value
 uint8_t state;      // holds current state.
 uint8_t CurState;   // holds the new state value
-uint8_t TimeOut;    // holds seconds in seconds uses timer 3
+uint8_t TimeOut;    // holds time in seconds (ClkTimer.c)
+uint8_t SwCounter;  // switch is held down timer in seconds uses (ClkTimer.c) 
 
 unsigned char arr1[] = "   5712 TEST";
 unsigned char arr2[] = "Next to start";

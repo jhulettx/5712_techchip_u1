@@ -16,7 +16,8 @@ extern "C" {
 #include "LCD.h"
 #include "mcc_generated_files/pin_manager.h"
     
-#define Time10s 10  // used for time out in state section
+#define Time10s 10  // used for time out in state section 10 seconds
+#define SwTime 3    // used for switch timing, 3 seconds.
     
 // ****************** RAM *******************************
     uint8_t Reg_old;
@@ -55,6 +56,8 @@ void FanSpeed(void);
 * Output: None
 ****************************************************************************/
 void Buttons(void);
+
+void wast(void);
 
 #ifdef	__cplusplus
 }

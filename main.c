@@ -37,6 +37,8 @@ uint8_t state;
 extern void switches(void);
 extern void Time_Count(void);
 
+stateflags stateflag;
+
 /*
                          Main application
  */
@@ -65,10 +67,9 @@ void main(void)
     
     TMR1_SetInterruptHandler(TMR1_CallBack);
     TMR3_SetInterruptHandler(Time_Count);   // TODO: build timer 3 timer file
-    // wait for W to turn on, if W is turned on, k1 and k4 turn on,
-	// when jumper j23 is shorted, k2 turns on.
-    
-    state = 0;
+        
+    state = 0;  // start with state o
+    stateflag._state0 = SET;
 
 //    LCD_xy(1,2);            // line 1, 1st slot
 //    text_display(arr1);
