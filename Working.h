@@ -16,12 +16,21 @@ extern "C" {
 #include "LCD.h"
 #include "mcc_generated_files/pin_manager.h"
     
+    extern void ChkInput_sw(void);
+    
 #define Time10s 10  // used for time out in state section 10 seconds
+#define Tmr100ms 100 // 100ms timer
 #define SwTime 3    // used for switch timing, 3 seconds.
     
 // ****************** RAM *******************************
-    uint8_t Reg_old;
-    uint8_t nextCnt;
+    //uint8_t Reg_old;
+    uint8_t BtnTimer;   // holds timer for when a button is down
+    uint8_t nextCnt;    // delete after testing.
+    
+//********************* FLAGS ***************************
+    bool _wait;
+    bool _out;
+    bool _stay;
     
 /***************************************************************************
 * Function: void states(void)

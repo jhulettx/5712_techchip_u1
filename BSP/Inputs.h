@@ -16,7 +16,8 @@ extern "C" {
 #include "../mcc_generated_files/pin_manager.h"
 
 //**** definitions ********************************************************
-    #define DB_TIMER    20        // debounce timer 20ms
+//    #define DB_TIMER    20        // debounce timer 20ms
+    #define DB_TIMER    5        // delete after testing
 
 //******************* RAM *************************************************
 extern uint8_t Reg;        // digital inputs register

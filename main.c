@@ -66,22 +66,15 @@ void main(void)
 //    INTERRUPT_PeripheralInterruptDisable();
     
     TMR1_SetInterruptHandler(TMR1_CallBack);
-    TMR3_SetInterruptHandler(Time_Count);   // TODO: build timer 3 timer file
+    TMR3_SetInterruptHandler(Time_Count);   
         
-    state = 0;  // start with state o
-    stateflag._state0 = SET;
+    state = 0;  // start with state 0
+    stateflag._state0 = SET;    // set state0 flag
 
-//    LCD_xy(1,2);            // line 1, 1st slot
-//    text_display(arr1);
-//    LCD_xy(2,2);            // line 2, 2nd slot
-//    text_display(arr2);
-    
     while(1)
     {  
         __delay_ms(10); // delete after testing
-//        ChkInput_sw();
-//        switches(); // handle switch press
-//        rd_state();
+
     }   // end of while(1)
 }   // end of main
 /**

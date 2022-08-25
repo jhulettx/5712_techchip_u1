@@ -173,6 +173,7 @@ void adc_isr(void)
  ****************************************************************************/
 void debounceISR(void)
 {
+    test = 99;  // delete after testing.
     if(flag._DeBouncing == true)
     {
         DebounceTime--;
