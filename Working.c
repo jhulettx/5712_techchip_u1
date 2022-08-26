@@ -65,8 +65,8 @@ void states(void)
             SendCommand(DispClr);   // clear display
             LCD_xy(1,1);            // line 1, 1st slot
             text_display(arr13);    // Fan Speed Test
-            LCD_xy(2,1);            // line 2, 1st slot
-            text_display(arr14);    // Turn on G Start
+            LCD_xy(2,2);            // line 2, 2nd slot
+            text_display(arr8);     // Press Select
 //            SwCounter = SwTime;     // load timer for 3 seconds
             TimeOut = Time10s;      // load timer for 10 seconds
             stateflag._state4 = CLEAR;
@@ -78,11 +78,13 @@ void states(void)
         test = 2;   // delete after testing
         if(0 == BtnTimer)
         {
-//          if(flag._Sel == SET)
-//          {
-//              TimeOut = 0;
-//              FanSpeed();
-//          }
+            if(flag._Sel == SET)
+            {
+                TimeOut = 0;
+                BtnTimer = Tmr100ms;
+                stateflag._state6 = SET;
+//                FanSpeed();
+            }
             test = 1;
             if(state == 4)
             {
@@ -118,51 +120,25 @@ void states(void)
             state = 4;
             _out = 1;
         }
+    } // end of state 5
+    
+    if(state == 6)
+    {
+        if(stateflag._state6 == SET)
+        {
+            SendCommand(DispClr);   // clear display
+            LCD_xy(1,1);            // line 1, 1st slot
+            text_display(arr13);    // Fan Speed Test
+            LCD_xy(2,1);            // line 2, 1st slot
+            text_display(arr14);    // Turn on G Start
+            stateflag._state6 = CLEAR;
+        }
     }
 } // end of states
     
 void Buttons(void)
 {
-//    test = 5;
-//    //TODO finish this function 8-11-22
-//    if(flag._W)
-//    {
-//        // do something
-//    }
-//    if(0 == flag._W)
-//    {
-//        // turn something off
-//    }
-//    
-//    if(flag._Nxt)
-//    {
-////        LCD_xy(1,1);            // line 1, 1st slot
-////        text_display(arr13);    // Fan Speed Test
-////        LCD_xy(2,1);            // line 2, 1st slot
-////        text_display(arr14);    // Turn on G Start
-////  TODO: start timer here, wait to see if select button is pushed or next button 
-////        is pushed, if no button is pushed and the timer runs out, go back to the start. 8-15-22
-////        if(0 == TimeOut)
-////            TimeOut = Time10s;  // load timer for 10 seconds
-//        
-////        if(flag._Sel)
-////        {
-////            FanSpeed();
-////        }
-//    }
-//    if(0 == flag._Nxt)
-//    {
-//        //
-//    }
-//    
-//    if(flag._Sel)
-//    {
-//        //
-//    }
-//    if(0 == flag._Sel)
-//    {
-//        //
-//    }
+
 }
 
 /************************************************************************

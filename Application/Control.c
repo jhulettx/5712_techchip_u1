@@ -57,8 +57,6 @@ void controlInitialize(void)
 {   
     //Turn on a timer, to generate periodic interrupts.
     TIMER_SetConfiguration(TIMER_CONFIGURATION_1MS);
-//    GetInputStartValue();
-//    ChkInput_sw();
     
     flag._DeBouncing = false;
      
@@ -67,7 +65,7 @@ void controlInitialize(void)
     //(in this case at 1:1 rate, so debounceISR()
     //executes once per 1ms).
     TIMER_RequestTick(&debounceISR, 1);
-    TIMER_RequestTick(&RdBtn, 1); 
+//    TIMER_RequestTick(&RdBtn, 1); 
     TIMER_RequestTick(&controlTasks, 1);    
     TIMER_RequestTick(&states, 1);          // check states (Working.c)
 }
@@ -83,7 +81,6 @@ void controlInitialize(void)
 ********************************************************************/
 void controlTasks(void)
 { 
-    //if(flag._InputChg)
         ChkInput_sw();
 }
 
@@ -100,54 +97,6 @@ void RdBtn(void)
 {
     Buttons();
 }
-
-/********************************************************************
- * Function: GetInputStartValue.c                                   *
- * Input:  G, W, LCDNext, LCDSel                                    *
- * Output: Reg                                                      *
- * Overview: On start up this function is called to set initial     *
- *           states of inputs.                                      *
- ********************************************************************/
-//void GetInputStartValue(void)
-//{
-//    Reg = 0;    // make sure register is clear
-////    test = 0; // delete when done testing
-//    if(LcdNext_GetValue())
-//    {
-//        flag._Nxt = OFF;    // next button is up
-//    }
-//    else
-//    {
-//        flag._Nxt = ON; // next button is down
-//    }
-//    
-//    if(LcdSel_GetValue())
-//    {
-//        flag._Sel = OFF;    // selection button is up
-//    }
-//    else
-//    {
-//        flag._Sel = ON; // selection button is down
-//    }
-//    
-//    if(W_GetValue())
-//    {
-//        flag._W = OFF;
-//    }
-//    else
-//    {
-//        flag._W = ON;   // W is active
-//    }
-//    
-//    if(GIN_GetValue())
-//    {
-//        flag._G = OFF;
-//    }
-//    else
-//    {
-//        flag._G = ON;   // G is active
-//    }
-//}
 
 /*********************************************************************
 * Function: static void adc_isr(void)
@@ -181,4 +130,7 @@ void debounceISR(void)
     
     if(0 == DebounceTime)
         flag._DeBouncing = false;
+    
+    if(BtnTimer)
+        --BtnTimer;
 }

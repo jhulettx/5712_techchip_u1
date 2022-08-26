@@ -54,7 +54,7 @@ extern "C" {
     {
         bool _BtnBusy;      // 1 = the button is pressed and held down, 0 = button is up
         bool _DeBouncing;   // 1 = debounce in progress
-        bool _RegDiff;      // 1 = register reading did not match the old reading
+//        bool _FanSpeed;     // 1 = register reading did not match the old reading
         bool _W;            // 1 = no W call, 0 = W active
         bool _G;            // 1 = no G call, 0 = G active
         bool _Sel;          // 1 = select button is up, 0 = button is pressed
@@ -69,6 +69,7 @@ extern "C" {
         bool _state2;       // 1 = state 2 LCD is being printed 0 = stop writing to LCD
         bool _state3;       // 1 = state 3 LCD is being printed 0 = stop writing to LCD
         bool _state4;       // 1 = state 4 LCD is being printed 0 = stop writing to LCD
+        bool _state6;       // 1 = state 6 LCD is being printed 0 = stop writing to LCD
     } stateflags;
     
 // RAM
@@ -77,7 +78,8 @@ uint8_t Reg_Cur;    // current register value
 uint8_t state;      // holds current state.
 uint8_t CurState;   // holds the new state value
 uint8_t TimeOut;    // holds time in seconds (ClkTimer.c)
-uint8_t SwCounter;  // switch is held down timer in seconds uses (ClkTimer.c) 
+uint8_t SwCounter;  // switch is held down timer in seconds uses (ClkTimer.c)
+uint8_t BtnTimer;   // holds timer for when a button is down
 
 unsigned char arr1[] = "   5712 TEST";
 unsigned char arr2[] = "Next to start";
@@ -90,7 +92,7 @@ unsigned char arr6[] = "Man HL";
 unsigned char arr7[] = "Auto HL";
 unsigned char on[] = "On";
 unsigned char off[] = "Off";
-unsigned char arr8[] = "select down";
+unsigned char arr8[] = "Press Select";
 unsigned char arr9[] = "next down  ";
 unsigned char arr10[] = "    Normal   ";
 unsigned char arr11[] = " W active   ";

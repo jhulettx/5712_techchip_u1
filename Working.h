@@ -24,7 +24,6 @@ extern "C" {
     
 // ****************** RAM *******************************
     //uint8_t Reg_old;
-    uint8_t BtnTimer;   // holds timer for when a button is down
     uint8_t nextCnt;    // delete after testing.
     
 //********************* FLAGS ***************************
