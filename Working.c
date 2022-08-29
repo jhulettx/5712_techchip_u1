@@ -21,7 +21,6 @@ uint8_t counter;
  ****************************************************************************/
 void states(void)
 {
-    test = 4;
         // TODO: finish this section 8-11-22
 //    if(state == CurState)
     if(state == 0)  // starting state
@@ -35,12 +34,15 @@ void states(void)
             text_display(arr2);     // Next to start
             stateflag._state0 = CLEAR;
         }
-        if(flag._Nxt == SET)
+        if(0 == BtnTimer)
         {
-            state = 4;
-            stateflag._state4 = SET;
+            if(flag._Nxt == SET)
+            {
+                state = 4;
+                stateflag._state4 = SET;
+            }
         }
-    }
+    } // end of state 0
     
     if(state == 1)
     {
@@ -61,7 +63,7 @@ void states(void)
     {        
         if(stateflag._state4 == SET)
         {        
-            // TODO: this does not display properly on line-1 8-22-22
+            // TODO: this does not display properly there is a stray char on line-1, slot 1 8-22-22
             SendCommand(DispClr);   // clear display
             LCD_xy(1,1);            // line 1, 1st slot
             text_display(arr13);    // Fan Speed Test
@@ -75,30 +77,32 @@ void states(void)
             BtnTimer = Tmr100ms;
         }
         
-        test = 2;   // delete after testing
+        test = 1;   // delete after testing
         if(0 == BtnTimer)
         {
             if(flag._Sel == SET)
             {
-                TimeOut = 0;
+                //TimeOut = 0;
                 BtnTimer = Tmr100ms;
+                state = 6;
                 stateflag._state6 = SET;
-//                FanSpeed();
+                setCnt++;   // delete after testing
             }
-            test = 1;
+            test = 2;
             if(state == 4)
             {
-                nextCnt++;  // delete after testing
                 if(flag._Nxt == SET)
                 {
-                    state = 5;
+                //    state = 5;
                     _wait = 1;  // set wait flag
-                }
-                if(_out == 1)   // is out flag set?
-                {               // yes..
-                    TimeOut = 0;
+                //}
+                //if(_out == 1)   // is out flag set?
+                //{               // yes..
+                    //TimeOut = 0;
                     state = 0; 
                     stateflag._state0 = SET;
+                    BtnTimer = Tmr100ms;
+                    nextCnt++;  // delete after testing
                 }
             }
         }
@@ -107,6 +111,7 @@ void states(void)
         {                   // yes..
             state = 0;
             stateflag._state0 = SET;
+            timeCnt++;
         }
     } // end of state 4
     

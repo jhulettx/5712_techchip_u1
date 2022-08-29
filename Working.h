@@ -24,7 +24,9 @@ extern "C" {
     
 // ****************** RAM *******************************
     //uint8_t Reg_old;
-    uint8_t nextCnt;    // delete after testing.
+    uint8_t nextCnt;    // how many times the next btn pushed delete after testing
+    uint8_t setCnt;     // how many times the set btn pushed, delete after testing
+    uint8_t timeCnt;    // how many times we went to time out, delete after testing
     
 //********************* FLAGS ***************************
     bool _wait;
