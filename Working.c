@@ -21,8 +21,7 @@ uint8_t counter;
  ****************************************************************************/
 void states(void)
 {
-        // TODO: finish this section 8-11-22
-//    if(state == CurState)
+        // TODO: finish this section 8-11-22    
     if(state == 0)  // starting state
     {
         if(stateflag._state0 == SET)
@@ -36,27 +35,32 @@ void states(void)
         }
         if(0 == BtnTimer)
         {
-            if(flag._Nxt == SET)
-            {
-                state = 4;
-                stateflag._state4 = SET;
-            }
+            test = 1;
+            wast();
+//            if(flag._Nxt == SET)
+//            {
+//                state = 4;
+//                stateflag._state4 = SET;
+//            }
         }
     } // end of state 0
     
     if(state == 1)
     {
-        
+       test = 1;
+       wast();
     }
     
     if(state == 2)
     {
-        
+        test = 2;
+        wast();
     }
     
     if(state == 3)  
     {
-        
+        test = 3;
+        wast();
     }
     
     if(state == 4)  // speed test
@@ -141,11 +145,6 @@ void states(void)
     }
 } // end of states
     
-void Buttons(void)
-{
-
-}
-
 /************************************************************************
  *                      FAN SPEED TEST                                  *
  ************************************************************************/
@@ -158,7 +157,27 @@ void FanSpeed(void)
 /********************************
  *      Dummy function          *
  ********************************/
-void wast(void)
-{
-    test = 100; // delete after testing
+void wast(void) // TODO: test this section and see if it works 8-30-22
+{    
+    if(flag._Nxt == SET)
+    {
+         Cstate++;
+         
+        if(Cstate > MaxState)
+            Cstate = 0;
+        state = Cstate;
+    }
+            
+//   uint8_t i;
+//   
+//    for(i = 0; i < MaxState; ++i)
+//    {
+//        Cstate[i];        
+//    } 
+   
+//   if(flag._Nxt == SET)
+//    {
+//        state = 4;
+//        stateflag._state4 = SET;
+//    }
 }

@@ -15,24 +15,27 @@ extern "C" {
 #include "Application/Global.h"
 #include "LCD.h"
 #include "mcc_generated_files/pin_manager.h"
+
     
     extern void ChkInput_sw(void);
     
 #define Time10s 10  // used for time out in state section 10 seconds
 #define Tmr100ms 100 // 100ms timer
 #define SwTime 3    // used for switch timing, 3 seconds.
+#define MaxState 7  // maximum number of states to cycle through
     
 // ****************** RAM *******************************
     //uint8_t Reg_old;
     uint8_t nextCnt;    // how many times the next btn pushed delete after testing
     uint8_t setCnt;     // how many times the set btn pushed, delete after testing
     uint8_t timeCnt;    // how many times we went to time out, delete after testing
+    uint8_t Cstate;     // holds the current state
     
 //********************* FLAGS ***************************
     bool _wait;
     bool _out;
     bool _stay;
-    
+        
 /***************************************************************************
 * Function: void states(void)
 * Overview: take the state from Inputs.c and find the corresponding state,
