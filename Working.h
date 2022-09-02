@@ -35,6 +35,15 @@ extern "C" {
     bool _wait;
     bool _out;
     bool _stay;
+    
+    // Button Flags used with next and select buttons
+    struct swFlags
+    {
+        bool _Ndown;    // 1 = the next button is down
+        bool _Sdown;    // 1 = the select button is down
+        bool _Ncycle;   // 1 = next button finished a down up cycle
+        bool _Scycle;   // 1 = select button finished a down up cycle
+    }swFlag;
         
 /***************************************************************************
 * Function: void states(void)
@@ -71,6 +80,10 @@ void FanSpeed(void);
 void Buttons(void);
 
 void wast(void);
+
+void NxtBtn(void);
+
+void SelBtn(void);
 
 #ifdef	__cplusplus
 }

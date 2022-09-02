@@ -33,28 +33,38 @@ void states(void)
             text_display(arr2);     // Next to start
             stateflag._state0 = CLEAR;
         }
-        if(0 == BtnTimer)
-        {
-            test = 1;
-            wast();
-//            if(flag._Nxt == SET)
-//            {
-//                state = 4;
-//                stateflag._state4 = SET;
-//            }
-        }
+//        if(0 == BtnTimer)
+//        {
+//            test = 1;
+//            wast();
+////            if(flag._Nxt == SET)
+////            {
+////                state = 4;
+////                stateflag._state4 = SET;
+////            }
+//        }
     } // end of state 0
     
     if(state == 1)
     {
        test = 1;
-       wast();
+       NxtBtn();
+       if(swFlag._Ncycle == SET)
+       {
+           swFlag._Ncycle = CLEAR;
+           state = 2;
+           stateflag._state2 = SET;
+       }
     }
     
     if(state == 2)
     {
         test = 2;
-        wast();
+        SendCommand(DispClr);    // clear display
+        LCD_xy(1,4);            // line 1, 1st slot
+        text_display(tst1);     // 
+        stateflag._state2 = CLEAR;
+        state = 1;
     }
     
     if(state == 3)  
@@ -159,14 +169,14 @@ void FanSpeed(void)
  ********************************/
 void wast(void) // TODO: test this section and see if it works 8-30-22
 {    
-    if(flag._Nxt == SET)
-    {
-         Cstate++;
-         
-        if(Cstate > MaxState)
-            Cstate = 0;
-        state = Cstate;
-    }
+//    if(flag._Nxt == SET)
+//    {
+//         Cstate++;
+//         
+//        if(Cstate > MaxState)
+//            Cstate = 0;
+//        state = Cstate;
+//    }
             
 //   uint8_t i;
 //   
@@ -180,4 +190,40 @@ void wast(void) // TODO: test this section and see if it works 8-30-22
 //        state = 4;
 //        stateflag._state4 = SET;
 //    }
+}
+
+/************************************************************************
+ *                  NxtBtn                                              *
+ ************************************************************************/
+void NxtBtn(void)
+{
+    if(flag._Nxt == SET)
+        swFlag._Ndown = SET;
+    
+    if(swFlag._Ndown == SET)
+    {
+        if(flag._Nxt == CLEAR)
+        {
+            swFlag._Ncycle = SET;
+            swFlag._Ndown = CLEAR;
+        }
+    }
+}
+
+/************************************************************************
+ *                  SelBtn                                              *
+ ************************************************************************/
+void SelBtn(void)
+{
+    if(flag._Sel == SET)
+        swFlag._Sdown = SET;
+    
+    if(swFlag._Sdown = SET)
+    {
+        if(flag._Sel == CLEAR)
+        {
+            swFlag._Scycle = SET;
+            swFlag._Sdown = CLEAR;
+        }
+    }
 }

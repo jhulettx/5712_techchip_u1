@@ -70,7 +70,8 @@ void main(void)
         
     state = 0;  // start with state 0
     stateflag._state0 = SET;    // set state0 flag
-
+    state = 1;  // delete after testing
+    
     while(1)
     {  
         __delay_ms(10); // delete after testing
