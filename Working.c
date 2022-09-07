@@ -32,6 +32,8 @@ void states(void)
             LCD_xy(2,2);            // line 2, 2nd slot
             text_display(arr2);     // Next to start
             stateflag._state0 = CLEAR;
+            state = 1;  // delete after testing
+            stateflag._state1 = SET;    // delete after testing
         }
 //        if(0 == BtnTimer)
 //        {
@@ -47,24 +49,30 @@ void states(void)
     
     if(state == 1)
     {
-       test = 1;
+       test = 1; // delete after testing
        NxtBtn();
-       if(swFlag._Ncycle == SET)
+       if(stateflag._state1 == SET)
        {
-           swFlag._Ncycle = CLEAR;
-           state = 2;
-           stateflag._state2 = SET;
-       }
+           if(swFlag._Ncycle == SET)
+           {
+               swFlag._Ncycle = CLEAR;
+               state = 2;
+               stateflag._state2 = SET;
+           }
+        }
     }
     
     if(state == 2)
     {
         test = 2;
-        SendCommand(DispClr);    // clear display
-        LCD_xy(1,4);            // line 1, 1st slot
-        text_display(tst1);     // 
-        stateflag._state2 = CLEAR;
-        state = 1;
+        if(stateflag._state2 = SET)
+        {
+            SendCommand(DispClr);    // clear display
+            LCD_xy(1,1);            // line 1, 1st slot
+            text_display(tst1);     // 
+            stateflag._state2 = CLEAR;
+            state = 1;
+        }
     }
     
     if(state == 3)  

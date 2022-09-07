@@ -99,6 +99,7 @@ unsigned char arr11[] = " W active   ";
 unsigned char arr12[] = " G active   ";
 unsigned char arr13[] = "Fan Speed Test";
 unsigned char arr14[] = "Turn on G Start";
+unsigned char arr15[] = "state: ";  // delete after testing
 
 #ifdef	__cplusplus
 }
