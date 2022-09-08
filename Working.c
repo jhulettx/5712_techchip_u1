@@ -55,7 +55,14 @@ void states(void)
        {
            if(swFlag._Ncycle == SET)
            {
+               test = 1;    // delete after testing
                swFlag._Ncycle = CLEAR;
+               SendCommand(DispClr);    // clear display
+               LCD_xy(1,1);             // line 1, 1st slot
+               sprintf(ste, "%s=%c%d", arr15, state);
+//               text_display(arr15);     // print state
+//               LCD_xy(1,7);             // line 1, 7th slot
+//               text_display(state);
                state = 2;
                stateflag._state2 = SET;
            }
@@ -64,7 +71,7 @@ void states(void)
     
     if(state == 2)
     {
-        test = 2;
+        test = 2;   // delete after testing
         if(stateflag._state2 = SET)
         {
             SendCommand(DispClr);    // clear display
