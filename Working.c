@@ -21,73 +21,76 @@ uint8_t counter;
  ****************************************************************************/
 void states(void)
 {
-        // TODO: finish this section 8-11-22    
-    if(state == 0)  // starting state
+        // TODO: finish this section 8-11-22        
+    if(state == 0)  // wait state
     {
-        if(stateflag._state0 == SET)
-        {
-            SendCommand(DispClr);    // clear display
-            LCD_xy(1,2);            // line 1, 1st slot
-            text_display(arr1);     // 5712 TEST
-            LCD_xy(2,2);            // line 2, 2nd slot
-            text_display(arr2);     // Next to start
-            stateflag._state0 = CLEAR;
-            state = 1;  // delete after testing
-            stateflag._state1 = SET;    // delete after testing
+        NxtBtn();   // go check next button
+        
+        if(swFlag._Ncycle == SET)   // has the next button cycled?
+        {                           // yes..
+            state = prvState;
+            state++;
+            swFlag._Ncycle = CLEAR;
         }
-//        if(0 == BtnTimer)
-//        {
-//            test = 1;
-//            wast();
-////            if(flag._Nxt == SET)
-////            {
-////                state = 4;
-////                stateflag._state4 = SET;
-////            }
-//        }
     } // end of state 0
     
+//************************ STATE 1 ********************************
     if(state == 1)
     {
        test = 1; // delete after testing
-       NxtBtn();
-       if(stateflag._state1 == SET)
-       {
-           if(swFlag._Ncycle == SET)
-           {
+//       NxtBtn();
+//       if(stateflag._state1 == SET)
+//       {
+//           if(swFlag._Ncycle == SET)
+//           {
                test = 1;    // delete after testing
-               swFlag._Ncycle = CLEAR;
+//               swFlag._Ncycle = CLEAR;
                SendCommand(DispClr);    // clear display
                LCD_xy(1,1);             // line 1, 1st slot
-               sprintf(ste, "%s=%c%d", arr15, state);
-//               text_display(arr15);     // print state
+               sprintf(ste, "%s%d", arr15, state);
+               text_display(ste);     // print state
 //               LCD_xy(1,7);             // line 1, 7th slot
 //               text_display(state);
-               state = 2;
-               stateflag._state2 = SET;
-           }
-        }
-    }
+               prvState = state;    // copy current state to previous state
+               state = 0;   // return to wait state
+//           }
+//        }
+    } // end of state 1
     
+//********************* STATE 2 *********************************
     if(state == 2)
     {
         test = 2;   // delete after testing
-        if(stateflag._state2 = SET)
-        {
-            SendCommand(DispClr);    // clear display
-            LCD_xy(1,1);            // line 1, 1st slot
-            text_display(tst1);     // 
-            stateflag._state2 = CLEAR;
-            state = 1;
-        }
+        SendCommand(DispClr);    // clear display
+        LCD_xy(1,1);             // line 1, 1st slot
+        sprintf(ste, "%s%d", arr15, state);
+        text_display(ste);     // print state
+        prvState = state;    // copy current state to previous state
+        state = 0;   // return to wait state
+        
+//        if(stateflag._state2 = SET)
+//        {
+//            SendCommand(DispClr);    // clear display
+//            LCD_xy(1,1);            // line 1, 1st slot
+//            text_display(tst1);     // 
+//            stateflag._state2 = CLEAR;
+//            state = 1;
+//        }
     }
     
+//********************* STATE 3 ***************************
     if(state == 3)  
     {
         test = 3;
-        wast();
-    }
+        SendCommand(DispClr);    // clear display
+        LCD_xy(1,1);             // line 1, 1st slot
+        sprintf(ste, "%s%d", arr15, state);
+        text_display(ste);     // print state
+        prvState = state;    // copy current state to previous state
+        state = 0;   // return to wait state
+    } // end of state 3
     
+//************************ STATE 4 ********************************
     if(state == 4)  // speed test
     {        
         if(stateflag._state4 == SET)
@@ -144,6 +147,7 @@ void states(void)
         }
     } // end of state 4
     
+//********************* STATE 5 ****************************
     if(state == 5)  // next button held down state "TESTING" 8-25-22
     {
         if(flag._Nxt == CLEAR && _stay == 1)
@@ -156,6 +160,7 @@ void states(void)
         }
     } // end of state 5
     
+//********************** STATE 6 ***************************
     if(state == 6)
     {
         if(stateflag._state6 == SET)
@@ -167,7 +172,7 @@ void states(void)
             text_display(arr14);    // Turn on G Start
             stateflag._state6 = CLEAR;
         }
-    }
+    } // end of state 6
 } // end of states
     
 /************************************************************************

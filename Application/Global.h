@@ -80,7 +80,9 @@ uint8_t CurState;   // holds the new state value
 uint8_t TimeOut;    // holds time in seconds (ClkTimer.c)
 uint8_t SwCounter;  // switch is held down timer in seconds uses (ClkTimer.c)
 uint8_t BtnTimer;   // holds timer for when a button is down
+uint8_t prvState;   // holds the previous state
 
+// LCD strings
 unsigned char arr1[] = "   5712 TEST";
 unsigned char arr2[] = "Next to start";
 unsigned char tst1[] = "Test 1";

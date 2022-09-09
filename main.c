@@ -30,12 +30,14 @@ void LCDinit(void);
 extern void text_display(unsigned char *);
 void LCD_xy( unsigned int X, unsigned int Y);
 void controlInitialize(void);
+extern void SendCommand(unsigned char temp);
 //extern void ChkInput_sw(void);
+extern void switches(void);
+extern void Time_Count(void);
 
 uint8_t state;
 
-extern void switches(void);
-extern void Time_Count(void);
+#define DispClr     0b00000001  // clear the display
 
 stateflags stateflag;
 
@@ -69,8 +71,15 @@ void main(void)
     TMR3_SetInterruptHandler(Time_Count);   
         
     state = 0;  // start with state 0
-    stateflag._state0 = SET;    // set state0 flag
-    //state = 1;  // delete after testing
+    prvState = state;   // make sure prvState = current state
+//    stateflag._state0 = SET;    // set state0 flag
+    
+    SendCommand(DispClr);    // clear display
+    LCD_xy(1,2);            // line 1, 1st slot
+    text_display(arr1);     // 5712 TEST
+    LCD_xy(2,2);            // line 2, 2nd slot
+    text_display(arr2);     // Next to start
+    test = 0;   // delete after testing
     
     while(1)
     {  
