@@ -47,10 +47,9 @@ void states(void)
 //               swFlag._Ncycle = CLEAR;
                SendCommand(DispClr);    // clear display
                LCD_xy(1,1);             // line 1, 1st slot
-               sprintf(ste, "%s%d", arr15, state);
-               text_display(ste);     // print state
-//               LCD_xy(1,7);             // line 1, 7th slot
-//               text_display(state);
+//               sprintf(ste, "%s", arr13);
+               text_display(arr13);      // print "fan speed test"
+//               stateflag._state4 = CLEAR;
                prvState = state;    // copy current state to previous state
                state = 0;   // return to wait state
 //           }
@@ -97,10 +96,10 @@ void states(void)
         {        
             // TODO: this does not display properly there is a stray char on line-1, slot 1 8-22-22
             SendCommand(DispClr);   // clear display
-            LCD_xy(1,1);            // line 1, 1st slot
-            text_display(arr13);    // Fan Speed Test
-            LCD_xy(2,2);            // line 2, 2nd slot
-            text_display(arr8);     // Press Select
+//            LCD_xy(1,1);            // line 1, 1st slot
+//            text_display(arr13);    // Fan Speed Test
+//            LCD_xy(2,2);            // line 2, 2nd slot
+//            text_display(arr8);     // Press Select
 //            SwCounter = SwTime;     // load timer for 3 seconds
             TimeOut = Time10s;      // load timer for 10 seconds
             stateflag._state4 = CLEAR;

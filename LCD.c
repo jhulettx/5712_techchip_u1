@@ -186,6 +186,7 @@ void SendCommand(unsigned char temp)
    hi = (i &= 0x0F);   // strip out hi nibble
    WriteNibble(hi);
    WriteNibble(low);
+   __delay_us(200);    // add timing delay 9-12-22
 }
 
 /*******************************************************************************
