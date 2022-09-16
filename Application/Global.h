@@ -36,6 +36,15 @@ extern "C" {
         SET
     } set;
     
+//    typedef enum
+//    {
+//        state0,
+//        state1,
+//        state2,
+//        state3,
+//        state4
+//    }Dstate;
+    
     // RELAYS
     typedef struct
     {
@@ -70,6 +79,8 @@ extern "C" {
         bool _state3;       // 1 = state 3 LCD is being printed 0 = stop writing to LCD
         bool _state4;       // 1 = state 4 LCD is being printed 0 = stop writing to LCD
         bool _state6;       // 1 = state 6 LCD is being printed 0 = stop writing to LCD
+//        uint8_t DisState;   // holds the current state for display section of states
+        bool _lock_state;   // 1 = current state will not change 0 = resume normal state sequence
     } stateflags;
     
 // RAM
