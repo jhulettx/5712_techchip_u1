@@ -48,7 +48,7 @@ void states(void)
         }
     } // end of state 0
     
-//************************ STATE 1 ********************************
+//****** STATE 1 ****** FAN SPEED TEST **************************
     if(state == 1)
     {
         test = 1; // delete after testing
@@ -77,42 +77,29 @@ void states(void)
             stateflag._lock_state = SET;
             prvState = state;       // copy current state to previous state
             swFlag._Scycle = CLEAR;
-            FanSpeed(); // go run fan speed test
+            stateflag._speed = SET; // signal start of speed test
         }
-               test = 1;    // delete after testing
+    test = 1;    // delete after testing
+        if(stateflag._lock_state == SET)
+            FanSpeed(); // go run fan speed test                   
     } // end of state 1
     
 //********************* STATE 2 *********************************
     if(state == 2)
     {
         test = 2;   // delete after testing
-        SendCommand(DispClr);    // clear display
-        LCD_xy(1,1);             // line 1, 1st slot
-        sprintf(ste, "%s%d", arr15, state);
-        text_display(ste);     // print state
-        prvState = state;    // copy current state to previous state
-        state = 0;   // return to wait state
-        
-//        if(stateflag._state2 = SET)
-//        {
-//            SendCommand(DispClr);    // clear display
-//            LCD_xy(1,1);            // line 1, 1st slot
-//            text_display(tst1);     // 
-//            stateflag._state2 = CLEAR;
-//            state = 1;
-//        }
+//        SendCommand(DispClr);    // clear display
+//        LCD_xy(1,1);             // line 1, 1st slot
+//        sprintf(ste, "%s%d", arr15, state);
+//        text_display(ste);     // print state
+//        prvState = state;    // copy current state to previous state
+//        state = 0;   // return to wait state
     }
     
 //********************* STATE 3 ***************************
     if(state == 3)  
     {
-        test = 3;
-        SendCommand(DispClr);    // clear display
-        LCD_xy(1,1);             // line 1, 1st slot
-        sprintf(ste, "%s%d", arr15, state);
-        text_display(ste);     // print state
-        prvState = state;    // copy current state to previous state
-        state = 0;   // return to wait state
+
     } // end of state 3
     
 //************************ STATE 4 ********************************
@@ -120,12 +107,6 @@ void states(void)
     {        
         if(stateflag._state4 == SET)
         {        
-            // TODO: this does not display properly there is a stray char on line-1, slot 1 8-22-22
-            SendCommand(DispClr);   // clear display
-//            LCD_xy(1,1);            // line 1, 1st slot
-//            text_display(arr13);    // Fan Speed Test
-//            LCD_xy(2,2);            // line 2, 2nd slot
-//            text_display(arr8);     // Press Select
 //            SwCounter = SwTime;     // load timer for 3 seconds
             TimeOut = Time10s;      // load timer for 10 seconds
             stateflag._state4 = CLEAR;
@@ -148,55 +129,21 @@ void states(void)
             test = 2;
             if(state == 4)
             {
-                if(flag._Nxt == SET)
-                {
-                //    state = 5;
-                    _wait = 1;  // set wait flag
-                //}
-                //if(_out == 1)   // is out flag set?
-                //{               // yes..
-                    //TimeOut = 0;
-                    state = 0; 
-                    stateflag._state0 = SET;
-                    BtnTimer = Tmr100ms;
-                    nextCnt++;  // delete after testing
-                }
+                
             }
-        }
-        
-        if(0 == TimeOut)    // did the time run out? 
-        {                   // yes..
-            state = 0;
-            stateflag._state0 = SET;
-            timeCnt++;
         }
     } // end of state 4
     
 //********************* STATE 5 ****************************
-    if(state == 5)  // next button held down state "TESTING" 8-25-22
+    if(state == 5)  
     {
-        if(flag._Nxt == CLEAR && _stay == 1)
-            state = 4;
         
-        if(flag._Nxt == CLEAR && _wait == 1)
-        {
-            state = 4;
-            _out = 1;
-        }
     } // end of state 5
     
 //********************** STATE 6 ***************************
     if(state == 6)
     {
-        if(stateflag._state6 == SET)
-        {
-            SendCommand(DispClr);   // clear display
-            LCD_xy(1,1);            // line 1, 1st slot
-            text_display(arr13);    // Fan Speed Test
-            LCD_xy(2,1);            // line 2, 1st slot
-            text_display(arr14);    // Turn on G Start
-            stateflag._state6 = CLEAR;
-        }
+        
     } // end of state 6
 } // end of states
     
@@ -205,8 +152,28 @@ void states(void)
  ************************************************************************/
 void FanSpeed(void)
 {
-//    K4_SetHigh();  
-    LED_SetHigh();
+    if(stateflag._speed == SET)
+    {
+        SendCommand(DispClr);   // clear display
+        LCD_xy(1,1);            // line 1, 1st slot
+        text_display(arr13);    // Fan Speed Test
+        LCD_xy(2,1);            // line 2, 1st slot
+        text_display(arr14);    // Turn on G Start
+        stateflag._speed = CLEAR;
+        flag._LMH = SET;    // ok to print Low, Med, High
+    }
+    
+    if(flag._G == SET)
+    {
+        if(flag._LMH == SET)
+        {
+            LCD_xy(2,2);            // line 2, 1st slot
+            text_display(arr15);    // Low, Med, High
+            flag._LMH = CLEAR;      // stop printing
+        }
+        K4_SetHigh();
+        test = 1;   // delete when done testing
+    }  
 }
 
 /************************************************************************

@@ -31,10 +31,10 @@ extern "C" {
     uint8_t timeCnt;    // how many times we went to time out, delete after testing
     uint8_t Cstate;     // holds the current state
     
-    unsigned char ste[8];
+//    unsigned char ste[8];
     
 //********************* FLAGS ***************************
-    bool _wait;
+    //bool _wait;
     bool _out;
     bool _stay;
     

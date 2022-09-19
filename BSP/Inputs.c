@@ -91,18 +91,28 @@ void ChkInput_sw(void)
                 flag._W = OFF;      // W switch is open
                 flag._G = OFF;      // G switch is open
                 break;
+                
 //            case 0x0D:  // W active
-
+//                flag._W = ON;      // W switch is closed
+//                flag._Nxt = OFF;    // next button is up
+//                flag._Sel = OFF;    // selection button is up
+//                flag._G = OFF;      // G switch is open
 //                break;
-//            case 0x0E:  // G active 
+                
+            case 0x0E:  // G active 
+                flag._G = ON;       // G is active
+                flag._Nxt = OFF;    // next button is up
+                flag._Sel = OFF;    // selection button is up
+                flag._W = OFF;      // W switch is open
+                break;
 
-//                break;
             case 0x0B:  // Select button pushed
                 flag._Sel = ON;     // selection button is down
                 flag._Nxt = OFF;    // next button is up
                 flag._W = OFF;      // W switch is open
                 flag._G = OFF;      // G switch is open
                 break;
+                
             case 0x07:  // Next button pushed
                 flag._Nxt = ON;     // next button is down
                 flag._Sel = OFF;    // selection button is up
