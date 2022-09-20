@@ -25,7 +25,6 @@ extern void states(void);
 
 //****************** RAM ***************************************
 uint8_t DebounceTime;
-//uint8_t test;       // DELETE after testing
 uint8_t SW_inputs;  // switch inputs
 uint8_t Jmp_inputs; // jumper inputs
 uint8_t Reg;        // digital inputs register
@@ -33,8 +32,6 @@ uint8_t Reg_old;    // old reading of register
 
 //volatile int32_t control;	//control variable
 
-//************** externals ***************************
-extern void Buttons(void);
 
 /*********************************************************************
 * Function: void controlInitialize(void)

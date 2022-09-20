@@ -64,7 +64,6 @@ void controlInitialize(void)
     //(in this case at 1:1 rate, so debounceISR()
     //executes once per 1ms).
     TIMER_RequestTick(&debounceISR, 1);
-//    TIMER_RequestTick(&RdBtn, 1); 
     TIMER_RequestTick(&controlTasks, 1);    
     TIMER_RequestTick(&states, 1);          // check states (Working.c)
 }
@@ -81,20 +80,6 @@ void controlInitialize(void)
 void controlTasks(void)
 { 
         ChkInput_sw();
-}
-
-/*********************************************************************
-* Function: void RdBtn(void)
-* Overview: send flow to Working.c
-*
-* PreCondition: None
-*
-* Input:  None
-* Output: None
-********************************************************************/
-void RdBtn(void)
-{
-    Buttons();
 }
 
 /*********************************************************************

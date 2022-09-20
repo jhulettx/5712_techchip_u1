@@ -160,16 +160,17 @@ void FanSpeed(void)
         LCD_xy(2,1);            // line 2, 1st slot
         text_display(arr14);    // Turn on G Start
         stateflag._speed = CLEAR;
-        flag._LMH = SET;    // ok to print Low, Med, High
+        flag._LMH = SET;    // ok to put Low, Med, High on LCD screen
     }
     
-    if(flag._G == SET)
-    {
-        if(flag._LMH == SET)
-        {
+    if(flag._G == SET)  // is the G input active?
+    {                   // yes..
+        if(flag._LMH == SET)    // is low medium high flag set?
+        {                       // yes..
+// TODO: use opposite polarity on LCD display for current speed 09/20/22
             LCD_xy(2,2);            // line 2, 1st slot
             text_display(arr15);    // Low, Med, High
-            flag._LMH = CLEAR;      // stop printing
+            flag._LMH = CLEAR;      // stop output to LCD
         }
         K4_SetHigh();
         test = 1;   // delete when done testing

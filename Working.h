@@ -71,20 +71,25 @@ void states(void);
 void FanSpeed(void);
 
 /***************************************************************************
-* Function: void Buttons(data)
-* Overview:  
+* Function: void NxtBtn(data)
+* Overview: see if Next button has been pushed and released. 
 *
 * PreCondition: None
 *
 * Input:  None
 * Output: None
 ****************************************************************************/
-void Buttons(void);
-
-void wast(void);
-
 void NxtBtn(void);
 
+/***************************************************************************
+* Function: void SelBtn(data)
+* Overview: see if select button has been pushed and released. 
+*
+* PreCondition: None
+*
+* Input:  None
+* Output: None
+****************************************************************************/
 void SelBtn(void);
 
 #ifdef	__cplusplus
