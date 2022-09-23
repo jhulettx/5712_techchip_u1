@@ -30,13 +30,20 @@ extern "C" {
     uint8_t setCnt;     // how many times the set btn pushed, delete after testing
     uint8_t timeCnt;    // how many times we went to time out, delete after testing
     uint8_t Cstate;     // holds the current state
-    
+    uint8_t speed;      // holds the current speed
 //    unsigned char ste[8];
     
 //********************* FLAGS ***************************
     //bool _wait;
     bool _out;
     bool _stay;
+    
+    typedef enum    // for speed control
+    {
+        LO,
+        MED,
+        HI
+    } spd;
     
     // Button Flags used with next and select buttons
     struct swFlags

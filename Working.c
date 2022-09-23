@@ -105,33 +105,7 @@ void states(void)
 //************************ STATE 4 ********************************
     if(state == 4)  // speed test
     {        
-        if(stateflag._state4 == SET)
-        {        
-//            SwCounter = SwTime;     // load timer for 3 seconds
-            TimeOut = Time10s;      // load timer for 10 seconds
-            stateflag._state4 = CLEAR;
-            _stay = 1;
-            state = 5;
-            BtnTimer = Tmr100ms;
-        }
         
-        test = 1;   // delete after testing
-        if(0 == BtnTimer)
-        {
-            if(flag._Sel == SET)
-            {
-                //TimeOut = 0;
-                BtnTimer = Tmr100ms;
-                state = 6;
-                stateflag._state6 = SET;
-                setCnt++;   // delete after testing
-            }
-            test = 2;
-            if(state == 4)
-            {
-                
-            }
-        }
     } // end of state 4
     
 //********************* STATE 5 ****************************
@@ -172,9 +146,30 @@ void FanSpeed(void)
             text_display(arr15);    // Low, Med, High
             flag._LMH = CLEAR;      // stop output to LCD
         }
-        K4_SetHigh();
+//        speed = LO;
         test = 1;   // delete when done testing
-    }  
+    } 
+    
+    SelBtn();  // see if select button has cycled 
+    
+    if(swFlag._Scycle == SET)
+    {
+    //TODO: if the select button cycles, increment the speed, if the speed goes to 3, reset it to 0 
+    }
+        if(speed == LO)
+        {
+            K4_SetHigh();
+        } 
+
+        if(speed == MED)
+        {
+            K4_SetHigh();
+        }
+
+        if(speed == HI)
+        {
+            K4_SetHigh();
+        }
 }
 
 /************************************************************************
