@@ -31,6 +31,8 @@ extern "C" {
     uint8_t timeCnt;    // how many times we went to time out, delete after testing
     uint8_t Cstate;     // holds the current state
     uint8_t speed;      // holds the current speed
+    uint8_t Cspeed[3] = {0,1,2};  // holds low, med, high
+    uint8_t z;          // holds numbers
 //    unsigned char ste[8];
     
 //********************* FLAGS ***************************

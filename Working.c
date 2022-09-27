@@ -142,11 +142,11 @@ void FanSpeed(void)
         if(flag._LMH == SET)    // is low medium high flag set?
         {                       // yes..
 // TODO: use opposite polarity on LCD display for current speed 09/20/22
-            LCD_xy(2,2);            // line 2, 1st slot
+            LCD_xy(2,1);            // line 2, 1st slot
             text_display(arr15);    // Low, Med, High
             flag._LMH = CLEAR;      // stop output to LCD
         }
-//        speed = LO;
+        speed = Cspeed[z] = 1;
         test = 1;   // delete when done testing
     } 
     
@@ -154,23 +154,30 @@ void FanSpeed(void)
     
     if(swFlag._Scycle == SET)
     {
-    //TODO: if the select button cycles, increment the speed, if the speed goes to 3, reset it to 0 
+    //TODO: if the select button cycles, increment the speed, if the speed goes to 3, reset it to 0
+        swFlag._Scycle = CLEAR;
     }
         if(speed == LO)
         {
             K4_SetHigh();
+            K3_SetLow();
+            K2_SetLow();
         } 
 
         if(speed == MED)
         {
             K4_SetHigh();
+            K3_SetLow();
+            K2_SetHigh();
         }
 
         if(speed == HI)
         {
             K4_SetHigh();
+            K3_SetHigh();
+            K2_SetHigh();
         }
-}
+}   // END of FanSpeed
 
 /************************************************************************
  *                  NxtBtn                                              *
