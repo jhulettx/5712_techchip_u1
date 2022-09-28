@@ -60,8 +60,8 @@ void SYSTEM_Initialize(void)
 
 void OSCILLATOR_Initialize(void)
 {
-    // SCS FOSC; IRCF 4MHz_HFINTOSC/4; IDLEN disabled; 
-    OSCCON = 0x50;
+    // SCS FOSC; IRCF 8MHz_HFINTOSC/2; IDLEN disabled; 
+    OSCCON = 0x60;
     // PRISD enabled; SOSCGO disabled; MFIOSEL disabled; 
     OSCCON2 = 0x04;
     // INTSRC disabled; PLLEN disabled; TUN 0; 

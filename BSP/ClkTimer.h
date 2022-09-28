@@ -21,11 +21,11 @@
 //#define HB_LED_SetLow()           (_LATG3 = 0)  // "            "
 
 // RAM
-uint8_t LED_TMR;
+//uint8_t LED_TMR;
 uint8_t volatile m1_sec_100, seconds;   // for timing in timer 3
-uint8_t PwrTimer;
-uint8_t TimerMain;  // main loop timer
-uint8_t volatile CDT_1;      // count down timer 1, used for various timers
+//uint8_t PwrTimer;
+//uint8_t TimerMain;  // main loop timer
+//uint8_t volatile CDT_1;      // count down timer 1, used for various timers
 
 // external RAM
 //extern uint8_t pwm_on_time; // holds how many seconds stage 1 is on

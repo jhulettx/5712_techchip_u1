@@ -36,9 +36,8 @@ extern "C" {
 //    unsigned char ste[8];
     
 //********************* FLAGS ***************************
-    //bool _wait;
-    bool _out;
-    bool _stay;
+//    bool _out;
+//    bool _stay;
     
     typedef enum    // for speed control
     {
