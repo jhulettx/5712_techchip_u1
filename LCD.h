@@ -28,7 +28,8 @@ void Bin2BCD(unsigned char);	      // Converts 8 bit Binary to 3 digit BCD
 void LCD_xy( unsigned int X, unsigned int Y); // location of text start
 void SendCommand(unsigned char temp);   // sends command to LCD
 void LCDclear(void);                       //clear the display
-void createChar(uint8_t location, uint8_t charmap[]);   // create custom chars
+//void createChar(uint8_t location, uint8_t charmap[]);   // create custom chars
+void createChar(uint8_t charmap[]);   // create custom chars
 
 // Definitions
 //******************** Display control definitions *********************
@@ -63,3 +64,5 @@ void createChar(uint8_t location, uint8_t charmap[]);   // create custom chars
 #define Line_2 0xC0     // line 2 start address C0
 #define Line_3 0x94     // line 3 start address 14
 #define Line_4 0xD4     // line 4 start address
+
+uint8_t test;

@@ -31,7 +31,8 @@ extern void text_display(unsigned char *);
 void LCD_xy( unsigned int X, unsigned int Y);
 void controlInitialize(void);
 extern void SendCommand(unsigned char temp);
-//extern void ChkInput_sw(void);
+//extern void createChar(uint8_t location, uint8_t charmap[]);
+extern void createChar(uint8_t charmap[]);
 extern void switches(void);
 extern void Time_Count(void);
 
@@ -73,12 +74,15 @@ void main(void)
     state = 0;  // start with state 0
     prvState = state;   // make sure prvState = current state
 //    stateflag._state0 = SET;    // set state0 flag
+    //createChar(1, Arrow_down);
+    createChar(Arrow_down);
     
     SendCommand(DispClr);    // clear display
     LCD_xy(1,2);            // line 1, 1st slot
     text_display(arr1);     // 5712 TEST
     LCD_xy(2,2);            // line 2, 2nd slot
-    text_display(arr2);     // Next to start
+//    text_display(arr2);     // Next to start
+    text_display(Arrow_down);   // testing 10-2-22
     test = 0;   // delete after testing
     
     while(1)

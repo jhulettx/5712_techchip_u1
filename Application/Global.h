@@ -126,7 +126,7 @@ const uint8_t Arrow_down[] =
 	0b00001110,  // ....OOO. 
 	0b00000100,  // .....O.. 
 	0b00000000,  // ........ 
-}
+};
 
 #ifdef	__cplusplus
 }

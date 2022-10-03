@@ -178,8 +178,9 @@ void text_display(unsigned char * text)
 void SendCommand(unsigned char temp)
 {
    unsigned char i = 0, low, hi;
-
+   
    Check_LCDBusy();
+   RS_SetLow();
    i = temp;
    low = (i &= 0x0F);  // strip out low nibble
    i = temp >> 4;      // rotate 4 places to right
@@ -278,12 +279,15 @@ void LCDclear(void)
 * Overview:        fill the first 8 CGRAM locations with custom characters 
 * Note:            None
 *******************************************************************************/
-void createChar(uint8_t location, uint8_t charmap[]) 
+//void createChar(uint8_t location, uint8_t charmap[]) 
+void createChar(uint8_t charmap[]) 
 {
     uint8_t x;
     
-    location &= 0x7;     // we have 8 locations 0-7
-    SendCommand(CGRAM | (location << 3));
+    test = 7;   // delete after testing
+//    location &= 0x7;     // we have 8 locations 0-7
+    //SendCommand(CGRAM | (location << 3));
+    SendCommand(CGRAM);
     
     for (x = 0; x<8; x++) 
     {
