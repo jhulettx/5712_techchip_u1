@@ -115,6 +115,19 @@ unsigned char arr14[] = "Turn on G Start";
 unsigned char arr15[] = "Low  Med  High";
 unsigned char arr16[] = "state: ";  // *** delete after testing ***
 
+const uint8_t Arrow_down[] =
+{
+// Char Number 2 -- Down Arrow
+	0b00000100,  // .....O.. 
+	0b00000100,  // .....O.. 
+	0b00000100,  // .....O.. 
+	0b00000100,  // .....O.. 
+	0b00010101,  // ...O.O.O 
+	0b00001110,  // ....OOO. 
+	0b00000100,  // .....O.. 
+	0b00000000,  // ........ 
+}
+
 #ifdef	__cplusplus
 }
 #endif

@@ -10,6 +10,7 @@
 
 #define _XTAL_FREQ 16000000
 #include <xc.h>
+#include<stdint.h>
 
 /************************ P R O T O T Y P E S *********************************/
 void LCDinit(void);                   // Configures LCD for 4 bit interface
@@ -22,10 +23,12 @@ void DDRAMadrs(unsigned char);        // DDRAM address selection
 void SetLine(unsigned char);          // LCD line selection					  
 void curser_ONOFF(unsigned char );    // Cursor ON or OFF control
 void set_curser(unsigned char);       // Cursor position set
-void text_display(unsigned char *);            // Displays string of data on LCD
+void text_display(unsigned char *);   // Displays string of data on LCD
 void Bin2BCD(unsigned char);	      // Converts 8 bit Binary to 3 digit BCD
 void LCD_xy( unsigned int X, unsigned int Y); // location of text start
-void SendCommand(unsigned char temp);    // sends command to LCD
+void SendCommand(unsigned char temp);   // sends command to LCD
+void LCDclear(void);                       //clear the display
+void createChar(uint8_t location, uint8_t charmap[]);   // create custom chars
 
 // Definitions
 //******************** Display control definitions *********************
@@ -35,7 +38,7 @@ void SendCommand(unsigned char temp);    // sends command to LCD
 #define DOFF        0b00001011  // display off
 #define BLINK_ON    0b00001111  // cursor blinks
 #define BLINK_OFF   0b00001110  // cursor does not blink
-#define DispClr     0b00000001  // clear the display
+#define DispClr     0x01        // clear the display
 #define Home        0b00000010  // return to home position, stops other commands
 #define FunctionSet 0x28        // initialise LCD to 4 bit mode
 #define EntryMode   0x06        // Entry Mode selection

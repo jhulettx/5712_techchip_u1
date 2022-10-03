@@ -255,31 +255,40 @@ void Check_LCDBusy(void)
    TRISLCD_reg = 0xF0;          // Make LCD port an output 
 } // END Check_LCDBusy
 
-/********************************************************************
- *                                                                  *
- * fill the first 8 CGRAM locations with custom characters          *
- ********************************************************************/
-//void createChar(uint8_t location, uint8_t charmap[]) 
-//{
-//    unsigned char i, low, hi;
-//    unsigned char temp;
-//    uint8_t x;
-//    
-//    location &= 0x7;     // we only have 8 locations 0-7
-//    temp = (CGRAM | (location << 3));
-//    
-//    Check_LCDBusy();
-//    i = temp;
-//    low = (i &= 0x0F);   // strip out low nibble
-//    i = temp >> 4;       // rotate 4 places to right
-//    hi = (i &= 0x0F);    // strip out hi nibble
-//    WriteNibble(hi);
-//    WriteNibble(low);
-//   
-//    
-//    for (int x=0; x<8; x++) 
-//    {
-//        //write(charmap[i]);
-//        WriteNibbleRS_H(charmap[x]);
-//    }
-//}
+/*******************************************************************************
+* Function:        void LCDclear(void)
+* PreCondition:    None
+* Input:           None
+* Output:          None
+* Side Effects:    None
+* Overview:        This function will clear the LCD screen.
+* Note:            None
+*******************************************************************************/
+void LCDclear(void)
+{
+    SendCommand(DispClr);   // clear display, set cursor position to zero
+    __delay_us(2000);       // this command takes a long time
+}
+
+/*******************************************************************************
+* Function:        createChar
+* PreCondition:    None
+* Input:           location, charmap[]
+* Output:          None
+* Overview:        fill the first 8 CGRAM locations with custom characters 
+* Note:            None
+*******************************************************************************/
+void createChar(uint8_t location, uint8_t charmap[]) 
+{
+    uint8_t x;
+    
+    location &= 0x7;     // we have 8 locations 0-7
+    SendCommand(CGRAM | (location << 3));
+    
+    for (x = 0; x<8; x++) 
+    {
+        WriteNibbleRS_H(charmap[x]);
+    }
+    
+    SendCommand(DDRAM); // go back to normal ram address
+}
