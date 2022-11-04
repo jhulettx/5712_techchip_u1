@@ -111,7 +111,7 @@ unsigned char arr10[] = "    Normal   ";
 unsigned char arr11[] = " W active   ";
 unsigned char arr12[] = " G active   ";
 unsigned char arr13[] = "Fan Speed Test";
-unsigned char arr14[] = "Turn on G Start";
+unsigned char arr14[] = "Start Turn on G";
 unsigned char arr15[] = "Low  Med  High";
 unsigned char arr16[] = "state: ";  // *** delete after testing ***
 

@@ -54,7 +54,7 @@ void states(void)
         test = 1; // delete after testing
         if(stateflag._state1 == SET)
         {    
-            SendCommand(DispClr);   // clear display   
+            LCDclear();             // clear display   
             LCD_xy(1,1);            // line 1, 1st slot
             text_display(arr13);    // Fan Speed Test
             LCD_xy(2,2);            // line 2, 2nd slot
@@ -128,11 +128,11 @@ void FanSpeed(void)
 {
     if(stateflag._speed == SET)
     {
-        SendCommand(DispClr);   // clear display
+        LCDclear();             // clear display
         LCD_xy(1,1);            // line 1, 1st slot
         text_display(arr13);    // Fan Speed Test
         LCD_xy(2,1);            // line 2, 1st slot
-        text_display(arr14);    // Turn on G Start
+        text_display(arr14);    // Start Turn on G
         stateflag._speed = CLEAR;
         flag._LMH = SET;    // ok to put Low, Med, High on LCD screen
     }
@@ -141,8 +141,10 @@ void FanSpeed(void)
     {                   // yes..
         if(flag._LMH == SET)    // is low medium high flag set?
         {                       // yes..
-// TODO: use opposite polarity on LCD display for current speed 09/20/22
-            LCD_xy(2,1);            // line 2, 1st slot
+            LCDclear();             // clear display
+            LCD_xy(1, 2);
+            CG_print(0);            // down arrow
+            LCD_xy(2, 1);           // line 2, 1st slot
             text_display(arr15);    // Low, Med, High
             flag._LMH = CLEAR;      // stop output to LCD
         }
@@ -154,7 +156,8 @@ void FanSpeed(void)
     
     if(swFlag._Scycle == SET)
     {
-    //TODO: if the select button cycles, increment the speed, if the speed goes to 3, reset it to 0
+//TODO: if the select button cycles, increment the speed, if the speed goes 
+//      to HI, reset it to LO, move down arrow over what ever speed is selected 11/4/22
         swFlag._Scycle = CLEAR;
     }
         if(speed == LO)

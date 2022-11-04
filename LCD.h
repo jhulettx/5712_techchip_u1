@@ -24,7 +24,7 @@ void clock(char data);  // clock out custom char to CG ram
 void CG_print(char data);   // print custom char to LCD
 void Write_LCD_Ram(char data);
 void LCDsend(unsigned char value, uint8_t CD);  // send data or command to the LCD
-void LCDclock(unsigned char value, uint8_t CD);     // send value to the LCD
+void LCDclock(unsigned char value, uint8_t CD); // send value to the LCD
 void display_on(void);
 void display_off(void);
 void curser_on(void);
@@ -103,6 +103,6 @@ unsigned char hi_b, low_b;
 
 typedef enum
 {
-    comm,
-    s_data
+    comm,   // command
+    s_data  // data
 }val;
