@@ -78,8 +78,9 @@ void states(void)
             prvState = state;       // copy current state to previous state
             swFlag._Scycle = CLEAR;
             stateflag._speed = SET; // signal start of speed test
+            test = 1;    // delete after testing
         }
-    test = 1;    // delete after testing
+    
         if(stateflag._lock_state == SET)
             FanSpeed(); // go run fan speed test                   
     } // end of state 1
@@ -126,40 +127,45 @@ void states(void)
  ************************************************************************/
 void FanSpeed(void)
 {
-    if(stateflag._speed == SET)
-    {
-        LCDclear();             // clear display
-        LCD_xy(1,1);            // line 1, 1st slot
-        text_display(arr13);    // Fan Speed Test
-        LCD_xy(2,1);            // line 2, 1st slot
-        text_display(arr14);    // Start Turn on G
-        stateflag._speed = CLEAR;
-        flag._LMH = SET;    // ok to put Low, Med, High on LCD screen
-    }
-    
-    if(flag._G == SET)  // is the G input active?
-    {                   // yes..
-        if(flag._LMH == SET)    // is low medium high flag set?
-        {                       // yes..
+//    while(flag._G)
+//    {
+        if(stateflag._speed == SET)
+        {
             LCDclear();             // clear display
-            LCD_xy(1, 2);
-            CG_print(0);            // down arrow
-            LCD_xy(2, 1);           // line 2, 1st slot
-            text_display(arr15);    // Low, Med, High
-            flag._LMH = CLEAR;      // stop output to LCD
+            LCD_xy(1,1);            // line 1, 1st slot
+            text_display(arr13);    // Fan Speed Test
+            LCD_xy(2,1);            // line 2, 1st slot
+            text_display(arr14);    // Start Turn on G
+            stateflag._speed = CLEAR;
+            flag._LMH = SET;    // ok to put Low, Med, High on LCD screen
         }
-        speed = Cspeed[z] = 1;
-        test = 1;   // delete when done testing
-    } 
     
-    SelBtn();  // see if select button has cycled 
+        if(flag._G == SET)  // is the G input active?
+        {                   // yes..
+            if(flag._LMH == SET)    // is low medium high flag set?
+            {                       // yes..
+                LCDclear();             // clear display
+                LCD_xy(1, 2);
+                CG_print(0);            // down arrow
+                LCD_xy(2, 1);           // line 2, 1st slot
+                text_display(arr15);    // Low, Med, High
+                flag._LMH = CLEAR;      // stop output to LCD
+            }
+
+            if(0 == R_loop) // is this the first time though the loop?
+                speed = LO; // yes.. start with low speed
+            R_loop++;   // keep incrementing to indicate multiple times through loop 
+            test = 1;   // delete when done testing
+        } 
+    
+        SelBtn();  // see if select button has cycled 
     
     if(swFlag._Scycle == SET)
     {
 //TODO: if the select button cycles, increment the speed, if the speed goes 
 //      to HI, reset it to LO, move down arrow over what ever speed is selected 11/4/22
         swFlag._Scycle = CLEAR;
-    }
+//    } // delete if the new 
         if(speed == LO)
         {
             K4_SetHigh();
@@ -180,8 +186,10 @@ void FanSpeed(void)
             K3_SetHigh();
             K2_SetHigh();
         }
+}
+//    }  // end of while flag._G
 }   // END of FanSpeed
-
+ 
 /************************************************************************
  *                  NxtBtn                                              *
  ************************************************************************/

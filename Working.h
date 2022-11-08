@@ -33,6 +33,8 @@ extern "C" {
     uint8_t speed;      // holds the current speed
     uint8_t Cspeed[3] = {0,1,2};  // holds low, med, high
     uint8_t z;          // holds numbers
+    
+    uint16_t R_loop;    // counts how many times through speed test loop.
 //    unsigned char ste[8];
     
 //********************* FLAGS ***************************
