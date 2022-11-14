@@ -69,6 +69,7 @@ extern "C" {
         bool _Sel;          // 1 = select button is up, 0 = button is pressed
         bool _Nxt;          // 1 = next button is up, 0 = button is pressed
         bool _Busy;         // 1 = a test is in process, 0 = not running any test
+        bool _First;        // 1 = this is the first time through the loop
     } FLAGS;
 
     typedef struct

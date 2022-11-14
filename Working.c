@@ -38,7 +38,7 @@ void states(void)
                         stateflag._state1 = SET;
                         break;
                     case 2:
-                        stateflag._state2 = SET;
+                        stateflag._state3 = SET;
                         break;
                     default:
                         break;
@@ -89,6 +89,10 @@ void states(void)
     if(state == 2)
     {
         test = 2;   // delete after testing
+        if(flag._G == CLEAR)
+            state = 0;
+        else if(flag._G == SET)
+            FanSpeed(); // go run fan speed test
 //        SendCommand(DispClr);    // clear display
 //        LCD_xy(1,1);             // line 1, 1st slot
 //        sprintf(ste, "%s%d", arr15, state);
@@ -127,67 +131,81 @@ void states(void)
  ************************************************************************/
 void FanSpeed(void)
 {
-//    while(flag._G)
-//    {
-        if(stateflag._speed == SET)
-        {
+    if(stateflag._speed == SET)
+    {
+        LCDclear();             // clear display
+        LCD_xy(1,1);            // line 1, 1st slot
+        text_display(arr13);    // Fan Speed Test
+        LCD_xy(2,1);            // line 2, 1st slot
+        text_display(arr14);    // Start Turn on G
+        stateflag._speed = CLEAR;
+        flag._LMH = SET;    // ok to put Low, Med, High on LCD screen
+    }
+
+    if(flag._G == SET)  // is the G input active?
+    {                   // yes..
+        state = 2;
+        if(flag._LMH == SET)    // is low medium high flag set?
+        {                       // yes..
             LCDclear();             // clear display
-            LCD_xy(1,1);            // line 1, 1st slot
-            text_display(arr13);    // Fan Speed Test
-            LCD_xy(2,1);            // line 2, 1st slot
-            text_display(arr14);    // Start Turn on G
-            stateflag._speed = CLEAR;
-            flag._LMH = SET;    // ok to put Low, Med, High on LCD screen
+            LCD_xy(2, 1);           // line 2, 1st slot
+            text_display(arr15);    // Low, Med, High
+            flag._LMH = CLEAR;      // stop output to LCD
+//                speed = LO;             // start with low speed
+            SPD = 0;
+            swFlag._Scycle = SET;   // force select switch cycle to start
+            flag._First = SET;      // first time through loop
         }
     
-        if(flag._G == SET)  // is the G input active?
-        {                   // yes..
-            if(flag._LMH == SET)    // is low medium high flag set?
-            {                       // yes..
-                LCDclear();             // clear display
-                LCD_xy(1, 2);
-                CG_print(0);            // down arrow
-                LCD_xy(2, 1);           // line 2, 1st slot
-                text_display(arr15);    // Low, Med, High
-                flag._LMH = CLEAR;      // stop output to LCD
-            }
-
-            if(0 == R_loop) // is this the first time though the loop?
-                speed = LO; // yes.. start with low speed
-            R_loop++;   // keep incrementing to indicate multiple times through loop 
-            test = 1;   // delete when done testing
-        } 
-    
-        SelBtn();  // see if select button has cycled 
+    SelBtn();  // see if select button has cycled 
     
     if(swFlag._Scycle == SET)
-    {
-//TODO: if the select button cycles, increment the speed, if the speed goes 
-//      to HI, reset it to LO, move down arrow over what ever speed is selected 11/4/22
+    { 
+        if(flag._First == CLEAR) 
+        {
+            if(++SPD > 2)
+                SPD = 0;
+        }
         swFlag._Scycle = CLEAR;
-//    } // delete if the new 
-        if(speed == LO)
+        test = 1;   // delete when done testing
+// TODO: the LCD does not work quite right posable delay issue with CG_print 11/14/22        
+        switch(SPD)
         {
-            K4_SetHigh();
-            K3_SetLow();
-            K2_SetLow();
-        } 
-
-        if(speed == MED)
-        {
-            K4_SetHigh();
-            K3_SetLow();
-            K2_SetHigh();
-        }
-
-        if(speed == HI)
-        {
-            K4_SetHigh();
-            K3_SetHigh();
-            K2_SetHigh();
-        }
-}
-//    }  // end of while flag._G
+            case 0:
+                LCD_xy(1, 13);
+                CG_print(1);        // clear arrow
+                LCD_xy(1, 2);
+                CG_print(0);       // down arrow
+                K4_SetHigh();
+                K3_SetLow();
+                K2_SetLow();
+                flag._First = CLEAR;  // clear first time threw into loop flag
+                break;
+                
+            case 1:
+                LCD_xy(1, 2);
+                CG_print(1);        // clear arrow
+                LCD_xy(1, 7);
+                CG_print(0);        // down arrow
+                K4_SetHigh();
+                K3_SetLow();
+                K2_SetHigh();
+                break;
+                
+            case 2:
+                LCD_xy(1, 7);
+                CG_print(1);        // clear arrow
+                LCD_xy(1, 13);
+                CG_print(0);        // down arrow
+                K4_SetHigh();
+                K3_SetHigh();
+                K2_SetHigh();
+                break;
+            default:
+                break;
+        } // end of switch        
+    }
+        }   // end of if flag._G 
 }   // END of FanSpeed
  
 /************************************************************************

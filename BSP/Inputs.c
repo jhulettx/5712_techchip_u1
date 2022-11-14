@@ -83,6 +83,7 @@ void ChkInput_sw(void)
         {
             Reg_Cur = Reg;  // copy new reading to Reg_Cur
         // TODO: set up flags 
+            test = 1;   // delete after testing
         switch(Reg_Cur)
         {
             case 0x0F:  // nothing active
@@ -99,11 +100,18 @@ void ChkInput_sw(void)
 //                flag._G = OFF;      // G switch is open
 //                break;
                 
+            case 0x0A:  // Select button pushed, G active
+                flag._Sel = ON;     // selection button is down
+                flag._Nxt = OFF;    // next button is up
+                flag._W = OFF;      // W switch is open
+//                flag._G = OFF;      // G switch is open
+                break;
+                
             case 0x0E:  // G active 
                 flag._G = ON;       // G is active
-                flag._Nxt = OFF;    // next button is up
+//                flag._Nxt = OFF;    // next button is up
                 flag._Sel = OFF;    // selection button is up
-                flag._W = OFF;      // W switch is open
+//                flag._W = OFF;      // W switch is open
                 break;
 
             case 0x0B:  // Select button pushed
