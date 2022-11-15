@@ -27,50 +27,42 @@ void ChkInput_sw(void)
         {
             Reg = 1;
             Reg = Reg << 1;
-//            flag._Nxt = OFF;    // next button is up
         }
         if(LcdNext_GetValue() == 0)
         {
             Reg = 0;
             Reg = Reg << 1;
-//            flag._Nxt = ON; // next button is down
         }
         
         if(LcdSel_GetValue() == 1)
         {
             Reg = Reg |= 1;
             Reg = Reg << 1;
-//            flag._Sel = OFF;    // selection button is up
         }
         if(LcdSel_GetValue() == 0)
         {
             Reg = Reg |= 0;
             Reg = Reg << 1;
-//            flag._Sel = ON; // selection button is down
         }
 
         if(W_GetValue() == 1)
         {
             Reg = Reg |= 1;
             Reg = Reg << 1;
-//            flag._W = OFF;
         }
         if(W_GetValue() == 0)
         {
             Reg = Reg |= 0;
             Reg = Reg << 1;
-//            flag._W = ON;   // W is active
         }
 
         if(GIN_GetValue() == 1)
         {
             Reg = Reg |= 1;
-//            flag._G = OFF;
         }
         if(GIN_GetValue() == 0)
         {
             Reg = Reg | 0;
-//            flag._G = ON;   // G is active
         }
         
         if(Reg_old != Reg) // is the new read same as the old read?

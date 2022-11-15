@@ -90,21 +90,28 @@ void states(void)
     {
         test = 2;   // delete after testing
         if(flag._G == CLEAR)
+        {
+            prvState = state;
+            LCDclear();             // clear display 
+            LCD_xy(2,2);            // line 2, 2nd slot
+            text_display(arr5);     // Press Next
             state = 0;
+            stateflag._lock_state = CLEAR; // unlock state
+        }
         else if(flag._G == SET)
             FanSpeed(); // go run fan speed test
-//        SendCommand(DispClr);    // clear display
-//        LCD_xy(1,1);             // line 1, 1st slot
-//        sprintf(ste, "%s%d", arr15, state);
-//        text_display(ste);     // print state
-//        prvState = state;    // copy current state to previous state
-//        state = 0;   // return to wait state
     }
     
 //********************* STATE 3 ***************************
     if(state == 3)  
     {
-
+        LCDclear();             // clear display 
+        LCD_xy(1, 6);           // line 1, 1st slot
+        text_display(arr18);    // ---
+        LCD_xy(2, 1);           // line 2, 2nd slot
+        text_display(arr17);    // endless loop
+        while(1){};
+        test = 7;   // delete after testing
     } // end of state 3
     
 //************************ STATE 4 ********************************
@@ -147,11 +154,7 @@ void FanSpeed(void)
         state = 2;
         if(flag._LMH == SET)    // is low medium high flag set?
         {                       // yes..
-            LCDclear();             // clear display
-            LCD_xy(2, 1);           // line 2, 1st slot
-            text_display(arr15);    // Low, Med, High
             flag._LMH = CLEAR;      // stop output to LCD
-//                speed = LO;             // start with low speed
             SPD = 0;
             swFlag._Scycle = SET;   // force select switch cycle to start
             flag._First = SET;      // first time through loop
@@ -172,8 +175,9 @@ void FanSpeed(void)
         switch(SPD)
         {
             case 0:
-                LCD_xy(1, 13);
-                CG_print(1);        // clear arrow
+                LCDclear();             // clear display
+                LCD_xy(2, 1);           // line 2, 1st slot
+                text_display(arr15);    // Low, Med, High
                 LCD_xy(1, 2);
                 CG_print(0);       // down arrow
                 K4_SetHigh();
@@ -183,8 +187,9 @@ void FanSpeed(void)
                 break;
                 
             case 1:
-                LCD_xy(1, 2);
-                CG_print(1);        // clear arrow
+                LCDclear();             // clear display
+                LCD_xy(2, 1);           // line 2, 1st slot
+                text_display(arr15);    // Low, Med, High
                 LCD_xy(1, 7);
                 CG_print(0);        // down arrow
                 K4_SetHigh();
@@ -193,8 +198,9 @@ void FanSpeed(void)
                 break;
                 
             case 2:
-                LCD_xy(1, 7);
-                CG_print(1);        // clear arrow
+                LCDclear();             // clear display
+                LCD_xy(2, 1);           // line 2, 1st slot
+                text_display(arr15);    // Low, Med, High
                 LCD_xy(1, 13);
                 CG_print(0);        // down arrow
                 K4_SetHigh();

@@ -97,8 +97,6 @@ uint8_t prvState;   // holds the previous state
 // LCD strings
 unsigned char arr1[] = "   5712 TEST";
 unsigned char arr2[] = "Next to start";
-unsigned char tst1[] = "Test 1";
-unsigned char k1_on[] = "turn on k1";
 unsigned char arr3[] = "Heat off active";
 unsigned char arr4[] = "Heat off NA";
 unsigned char arr5[] = "Press Next";
@@ -114,7 +112,9 @@ unsigned char arr12[] = " G active   ";
 unsigned char arr13[] = "Fan Speed Test";
 unsigned char arr14[] = "Start Turn on G";
 unsigned char arr15[] = "Low  Med  High";
-unsigned char arr16[] = "state: ";  // *** delete after testing ***
+unsigned char arr16[] = "state: 3";  // *** delete after testing ***
+unsigned char arr17[] = "Test has stopped";
+unsigned char arr18[] = "----";
 
 const uint8_t Arrow_down[] =
 {
