@@ -181,8 +181,8 @@ void FanSpeed(void)
                 LCD_xy(1, 2);
                 CG_print(0);       // down arrow
                 K4_SetHigh();
-                K3_SetLow();
-                K2_SetLow();
+                K3_SetHigh();
+                K2_SetHigh();
                 flag._First = CLEAR;  // clear first time threw into loop flag
                 break;
                 
@@ -204,8 +204,8 @@ void FanSpeed(void)
                 LCD_xy(1, 13);
                 CG_print(0);        // down arrow
                 K4_SetHigh();
-                K3_SetHigh();
-                K2_SetHigh();
+                K3_SetLow();
+                K2_SetLow();
                 break;
             default:
                 break;
